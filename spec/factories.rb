@@ -1,10 +1,12 @@
 FactoryGirl.define do
-  sequence :email do |n|
-    "user#{n}@example.com"
+  factory :user do
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password "password"
   end
 
-  factory :user do
-    email
-    password "password"
+  factory :reminder do
+    user
+    sequence(:title) { |n| "Reminder #{n}" }
+    due_at { 1.day.from_now }
   end
 end
