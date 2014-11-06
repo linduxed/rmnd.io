@@ -1,6 +1,10 @@
 <%= simple_form_for @reminder do |f| %>
   <%= f.input :title %>
   <%= f.input :due_at %>
+  <%= f.input(
+        :repeat_frequency,
+        collection: @reminder.class.repeat_frequencies.keys,
+      )%>
   <%= f.input :description %>
   <%= f.submit %>
 <% end %>

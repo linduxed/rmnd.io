@@ -22,6 +22,11 @@ class RemindersController < ApplicationController
   delegate :reminders, to: :current_user
 
   def reminder_params
-    params.require(:reminder).permit(:title, :due_at, :description)
+    params.require(:reminder).permit(
+      :description,
+      :due_at,
+      :repeat_frequency,
+      :title,
+    )
   end
 end

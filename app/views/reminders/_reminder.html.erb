@@ -1,6 +1,11 @@
 <li>
   <h2><%= reminder.title %></h2>
-  <p><%= time_tag reminder.due_at %></p>
+  <p>
+    <%= time_tag reminder.due_at %>
+    <% if reminder.repeating? %>
+      Repeats <%= reminder.repeat_frequency %>
+    <% end %>
+  </p>
   <% if reminder.description? %>
     <%= simple_format reminder.description %>
   <% end %>
