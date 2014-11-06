@@ -1,0 +1,10 @@
+<%= simple_form_for @reminder do |f| %>
+  <%= f.input :title %>
+  <%= f.input :due_at %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+  <%= render @reminders %>
+</ul>

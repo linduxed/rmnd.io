@@ -1,0 +1,3 @@
+<%= @reminder.title %>
+
+<%= @reminder.description %>
