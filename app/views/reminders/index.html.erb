@@ -4,7 +4,10 @@
   <%= f.input(
         :repeat_frequency,
         collection: @reminder.class.repeat_frequencies.keys,
-      )%>
+        label_method: ->(frequency) do
+          t(frequency, scope: "reminders.repeat_frequencies")
+        end
+      ) %>
   <%= f.input :description %>
   <%= f.submit %>
 <% end %>

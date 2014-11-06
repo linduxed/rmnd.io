@@ -17,3 +17,25 @@ en:
 
   titles:
     application: Rmnd
+
+  simple_form:
+    labels:
+      reminder:
+        title: Title
+        due_at: Due date
+        description: Description
+        repeat_frequency: Repeats
+
+  helpers:
+    submit:
+      reminder:
+        create: Add
+
+  reminders:
+    repeat_frequencies:
+      daily: Daily
+      weekly: Weekly
+      monthly: Monthly
+      yearly: Yearly
+    reminder:
+      repeats: Repeats %{frequency}

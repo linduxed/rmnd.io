@@ -3,7 +3,14 @@
   <p>
     <%= time_tag reminder.due_at %>
     <% if reminder.repeating? %>
-      Repeats <%= reminder.repeat_frequency %>
+      Repeats
+      <%= t(
+            ".repeats",
+            frequency: t(
+              reminder.repeat_frequency,
+              scope: "reminders.repeat_frequencies",
+            ).downcase,
+          ) %>
     <% end %>
   </p>
   <% if reminder.description? %>

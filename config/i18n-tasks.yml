@@ -8,6 +8,7 @@ search:
 ignore_unused:
   - activerecord.*
   - date.*
+  - helpers.submit.*
   - simple_form.*
   - time.*
   - titles.*
