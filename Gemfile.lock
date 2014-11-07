@@ -95,7 +95,6 @@ GEM
       activesupport
       capybara
       i18n
-    high_voltage (2.2.1)
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.11)
@@ -252,7 +251,6 @@ DEPENDENCIES
   factory_girl_rails
   flutie
   formulaic
-  high_voltage
   i18n-tasks
   jquery-rails
   launchy
