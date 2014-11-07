@@ -1,6 +1,6 @@
 <%= simple_form_for @reminder do |f| %>
   <%= f.input :title %>
-  <%= f.input :due_at %>
+  <%= f.input :due_at, as: :string, input_html: { type: :datetime } %>
   <%= f.input(
         :repeat_frequency,
         collection: @reminder.class.repeat_frequencies.keys,

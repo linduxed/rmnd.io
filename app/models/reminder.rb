@@ -29,6 +29,14 @@ class Reminder < ActiveRecord::Base
     repeat_frequency.present?
   end
 
+  def due_at=(due_at)
+    if due_at.is_a? String
+      super Chronic.parse(due_at)
+    else
+      super
+    end
+  end
+
   private
 
   def distance_to_next_due_date

@@ -4,6 +4,7 @@ ruby "2.1.3"
 
 gem "airbrake"
 gem "bourbon", "~> 3.2.1"
+gem "chronic"
 gem "clearance"
 gem "coffee-rails"
 gem "delayed_job_active_record"
