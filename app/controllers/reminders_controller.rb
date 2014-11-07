@@ -23,7 +23,6 @@ class RemindersController < ApplicationController
 
   def reminder_params
     params.require(:reminder).permit(
-      :description,
       :due_at,
       :repeat_frequency,
       :title,

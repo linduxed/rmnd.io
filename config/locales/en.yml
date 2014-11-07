@@ -23,7 +23,6 @@ en:
       reminder:
         title: Title
         due_at: Due date
-        description: Description
         repeat_frequency: Repeats
 
   helpers:

@@ -23,7 +23,6 @@ feature "Sending reminders" do
         :reminder,
         user: bob,
         title: "Buy milk",
-        description: "The good one.",
         due_at: 1.minute.ago,
         sent_at: 10.minutes.ago,
       )
@@ -40,8 +39,7 @@ feature "Sending reminders" do
 
       bobs_reminder_email = ActionMailer::Base.deliveries.find do |email|
         email.to == ["bob@example.com"] &&
-          email.subject =~ /Buy milk/i &&
-          email.body =~ /The good one./i
+          email.subject =~ /Buy milk/i
       end
 
       expect(alices_reminder_email).to be

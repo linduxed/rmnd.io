@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Adding reminders" do
-  scenario "without descriptions" do
+  scenario "with a normal due date" do
     visit reminders_path(as: create(:user))
 
     fill_in field("reminder.title"), with: "Buy milk"
@@ -23,19 +23,6 @@ feature "Adding reminders" do
       expect(page).to have_content "Buy milk"
       expect(page).to have_content l(1.day.from_now.change(hour: 16), format: :long)
     end
-  end
-
-  scenario "with descriptions" do
-    visit reminders_path(as: create(:user))
-
-    fill_in field("reminder.title"), with: "Buy milk"
-    fill_in field("reminder.due_at"), with: "2014-11-06 22:34"
-    fill_in field("reminder.description"), with: "The good one."
-    click_button button("reminder.create")
-
-    expect(page).to have_content "Buy milk"
-    expect(page).to have_content l(Time.new(2014, 11, 6, 22, 34), format: :long)
-    expect(page).to have_content "The good one."
   end
 
   scenario "that are repeating" do

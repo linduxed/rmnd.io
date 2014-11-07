@@ -12,7 +12,6 @@ describe RemindersController do
         allow(user.reminders).to receive(:new).and_return(reminder)
         allow(reminder).to receive(:save).and_return(true)
         params = {
-          description: "The good one.",
           due_at: "2014-11-07 21:38",
           repeat_frequency: "0",
           title: "Buy milk",

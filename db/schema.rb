@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106192158) do
+ActiveRecord::Schema.define(version: 20141107211814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20141106192158) do
     t.string   "title",            null: false
     t.datetime "due_at",           null: false
     t.datetime "sent_at"
-    t.text     "description"
     t.integer  "repeat_frequency"
   end
 
