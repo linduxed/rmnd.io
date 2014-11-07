@@ -41,6 +41,12 @@ feature "Adding reminders" do
     )
   end
 
+  scenario "that are invalid" do
+    visit reminders_path(as: create(:user))
+
+    click_button button("reminder.create")
+  end
+
   def repeat_frequency(name)
     t(name, scope: "reminders.repeat_frequencies")
   end

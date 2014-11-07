@@ -12,7 +12,7 @@ class RemindersController < ApplicationController
     if @reminder.save
       redirect_to reminders_path
     else
-      @reminders = reminders
+      @reminders = reminders.reload
       render :index
     end
   end
