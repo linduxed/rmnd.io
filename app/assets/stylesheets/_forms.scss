@@ -1,3 +1,75 @@
+label {
+  text-transform: uppercase;
+  font-size: 0.7em;
+
+  abbr[title] {
+    border: none;
+  }
+}
+
+input[type=text],
+input[type=datetime],
+input[type=email],
+input[type=password] {
+  background: $input-background-color;
+  border-radius: 0.25em;
+  border: 1px solid $input-border-color;
+  color: $input-color;
+  display: block;
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+  max-width: 100%;
+  outline: none;
+  padding: 0.5em 0.5em;
+  width: 100%;
+
+  @include placeholder {
+    color: $input-placeholder-color;
+  }
+}
+
+select {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5em;
+  appearance: none;
+}
+
+input[type=submit] {
+  margin-top: 1em;
+  float: right;
+}
+
+input[type=submit],
+.secondary-button {
+  background: none;
+  border: 1px solid $accent-color;
+  border-radius: 0.25em;
+  color: $accent-color;
+  outline: none;
+  padding: 0.5em 0.75em;
+}
+
+input[type=submit].primary-button {
+  background: $accent-color;
+  border-radius: 0.25em;
+  border: none;
+  color: white;
+  font-weight: $medium;
+  outline: none;
+  padding: 0.5em 0.75em;
+}
+
 .input.datetime select {
   display: inline;
+}
+
+.button_to,
+.button_to div {
+  display: inline;
+
+  input[type=submit] {
+    margin-top: 0;
+    float: none;
+  }
 }

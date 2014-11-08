@@ -1,0 +1,12 @@
+<h2><%= t(".title") %></h2>
+
+<p><%= t(".description") %></p>
+
+<%= simple_form_for(
+      :password_reset,
+      url: user_password_path(@user, token: @user.confirmation_token),
+      method: :put,
+    ) do |f| %>
+  <%= f.input :password %>
+  <%= f.submit class: "primary-button" %>
+<% end %>

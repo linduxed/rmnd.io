@@ -8,7 +8,7 @@ feature "Updating the password" do
       user_id: user,
       token: user.confirmation_token
     )
-    fill_in "password_reset_password", with: "password"
+    fill_in field("password_reset.password"), with: "password"
     click_button button("password_reset.submit")
 
     expect(page).to have_button t("layouts.application.sign_out")
@@ -21,12 +21,12 @@ feature "Updating the password" do
       user_id: user,
       token: user.confirmation_token
     )
-    fill_in "password_reset_password", with: "password"
+    fill_in field("password_reset.password"), with: "password"
     click_button button("password_reset.submit")
     click_button t("layouts.application.sign_out")
     visit sign_in_path
-    fill_in "session_email", with: "user@example.com"
-    fill_in "session_password", with: "password"
+    fill_in field("session.email"), with: "user@example.com"
+    fill_in field("session.password"), with: "password"
     click_button button("session.submit")
 
     expect(page).to have_button t("layouts.application.sign_out")
@@ -39,7 +39,7 @@ feature "Updating the password" do
       user_id: user,
       token: user.confirmation_token
     )
-    fill_in "password_reset_password", with: ""
+    fill_in field("password_reset.password"), with: ""
     click_button button("password_reset.submit")
 
     expect(page).to have_content t("flashes.failure_after_update")
@@ -51,7 +51,7 @@ feature "Updating the password" do
   def user_with_reset_password(email: "user@example.com")
     user = create(:user, email: email)
     visit new_password_path
-    fill_in "password_email", with: email
+    fill_in field("password.email"), with: email
     click_button button("password.submit")
     user.reload
   end

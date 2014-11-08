@@ -1,0 +1,9 @@
+<h2><%= t(".title") %></h2>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.submit class: "primary-button" %>
+<% end %>
+
+<%= link_to t(".sign_in"), sign_in_path %>

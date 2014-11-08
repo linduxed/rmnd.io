@@ -15,26 +15,97 @@ en:
       short:
         "%B %d"
 
+  flashes:
+    failure_after_create: Bad email or password.
+    failure_after_update: Password can't be blank.
+    failure_when_forbidden: Please double check the URL or try submitting
+      the form again.
+
   titles:
     application: Rmnd
 
   simple_form:
     labels:
+      password:
+        email: Email address
+      password_reset:
+        password: New password
       reminder:
-        title: Title
-        due_at: Due date
-        repeat_frequency: Repeats
+        title: What
+        due_at: When
+        repeat_frequency: Repeat
+      session:
+        email: Email address
+        password: Password
+      user:
+        email: Email address
+        password: Password
+    placeholders:
+      reminder:
+        title: Buy more milk
+        due_at: tomorrow
 
   helpers:
     submit:
       reminder:
-        create: Add
+        create: Add reminder
+      password:
+        submit: Reset password
+      password_reset:
+        submit: Save this password
+      session:
+        submit: Sign in
+      user:
+        create: Sign up
+
+  application:
+    navigation:
+      sign_in: Sign in
+      sign_out: Sign out
+
+  home_pages:
+    show:
+      tagline: Don't forget stuff
+      intro: Be reminded by email.
 
   reminders:
     repeat_frequencies:
+      never: Never
       daily: Daily
       weekly: Weekly
       monthly: Monthly
       yearly: Yearly
     reminder:
       repeats: Repeats %{frequency}
+    index:
+      add: Add a reminder
+
+  passwords:
+    create:
+      description: You will receive an email within the next few minutes. It
+        contains instructions for changing your password.
+    edit:
+      description: Your password has been reset. Choose a new password below.
+      title: Change your password
+    new:
+      description: To be emailed a link to reset your password, please enter
+        your email address.
+      title: Reset your password
+
+  sessions:
+    new:
+      forgot_password: Forget your password?
+      sign_up: Sign up
+      title: Sign in
+
+  users:
+    new:
+      sign_in: Sign in
+      title: Sign up
+
+  clearance_mailer:
+    change_password:
+      closing: If you didn't request this, ignore this email. Your password
+        has not been changed.
+      opening: "Someone, hopefully you, requested we send you a link to change
+        your password:"

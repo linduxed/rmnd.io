@@ -1,0 +1,30 @@
+$base-font-family: "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif;
+$light: 300;
+$medium: 400;
+$bold: 700;
+
+body {
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-weight: $light;
+}
+
+a {
+  color: $link-color;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.25em;
+}

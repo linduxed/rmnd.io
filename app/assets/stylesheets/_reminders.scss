@@ -1,0 +1,45 @@
+$reminder-border: 1px solid $separator-color;
+
+.new_reminder {
+  @include clearfix;
+  margin-bottom: 3em;
+
+  .reminder_title {
+    @include span-columns(8);
+  }
+
+  .reminder_due_at {
+    @include span-columns(4);
+    @include omega();
+  }
+}
+
+ul.reminders {
+  list-style: none;
+  padding: 0;
+  box-shadow: 0 0 5px $separator-shadow-color;
+}
+
+.reminders .reminder {
+  border: $reminder-border;
+  border-bottom: none;
+  padding: 0.75em 1em;
+
+  &:last-child {
+    border-bottom: $reminder-border;
+  }
+
+  h3.title, .due-at {
+    display: inline;
+  }
+
+  h3.title {
+    font-weight: $light;
+    font-size: 1.2em;
+  }
+
+  .due-at {
+    font-size: 0.8em;
+  }
+}
+

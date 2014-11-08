@@ -5,8 +5,8 @@ feature "Signing out" do
     user = create(:user)
 
     visit root_path(as: user)
-    click_button t("layouts.application.sign_out")
+    click_button t("application.navigation.sign_out")
 
-    expect(page).not_to have_button t("layouts.application.sign_out")
+    expect(page).not_to have_button t("application.navigation.sign_out")
   end
 end

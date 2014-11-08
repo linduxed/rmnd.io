@@ -1,16 +1,18 @@
+<h2><%= t(".add") %></h2>
 <%= simple_form_for @reminder do |f| %>
   <%= f.input :title %>
   <%= f.input :due_at, as: :string, input_html: { type: :datetime } %>
   <%= f.input(
         :repeat_frequency,
         collection: @reminder.class.repeat_frequencies.keys,
+        include_blank: t("reminders.repeat_frequencies.never"),
         label_method: ->(frequency) do
           t(frequency, scope: "reminders.repeat_frequencies")
         end
       ) %>
-  <%= f.submit %>
+  <%= f.submit class: "primary-button" %>
 <% end %>
 
-<ul>
+<ul class="reminders">
   <%= render @reminders %>
 </ul>

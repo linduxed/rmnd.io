@@ -1,0 +1,33 @@
+body {
+  border-top: 3px solid $accent-color;
+}
+
+.site-header {
+  @include outer-container;
+  padding: 3em 0;
+
+  h1 {
+    float: left;
+    font-size: 2em;
+    line-height: 1em;
+    margin: 0;
+
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+    }
+  }
+
+  nav {
+    line-height: 2em;
+    float: right;
+
+    .sign-out-button {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.site-main {
+  @include outer-container;
+}

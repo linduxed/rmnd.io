@@ -2,8 +2,11 @@
 
 @import "normalize-rails";
 @import "bourbon";
-@import "base/grid-settings";
+@import "grid";
 @import "neat";
-@import "base/base";
 
+@import "colors";
+@import "typography";
+@import "layout";
 @import "forms";
+@import "reminders";

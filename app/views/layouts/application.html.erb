@@ -5,13 +5,19 @@
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
   <title><%= title %></title>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:700,400,300" %>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <%= render "flashes" -%>
-  <%= render "navigation" -%>
-  <%= yield %>
+  <header class="site-header">
+    <h1><%= link_to "rmnd", root_path %></h1>
+    <%= render "navigation" -%>
+  </header>
+  <main class="site-main">
+    <%= render "flashes" -%>
+    <%= yield %>
+  </main>
   <%= render "javascript" %>
 </body>
 </html>
