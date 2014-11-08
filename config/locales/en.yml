@@ -22,7 +22,7 @@ en:
       the form again.
 
   titles:
-    application: Rmnd
+    application: rmnd.io
 
   simple_form:
     labels:
