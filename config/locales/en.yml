@@ -79,6 +79,7 @@ en:
       repeats: Repeats %{frequency}
     index:
       add: Add a reminder
+      reminders: Your reminders
 
   passwords:
     create:
