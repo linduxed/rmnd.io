@@ -1,8 +1,11 @@
-$separator-color: #C8D9D9;
-$separator-shadow-color: lighten($separator-color, 10);
-$base-font-color: darken($separator-color, 50);
 $accent-color: #00CCA3;
+
+$separator-color: tint($accent-color, 50%);
+$separator-shadow-color: tint($separator-color, 20%);
+$font-color: tint(shade($separator-color, 70%), 20%);
+$site-title-color: tint($font-color, 30%);
 $link-color: darken($accent-color, 2);
+
 $input-background-color: none;
 $input-color: $link-color;
 $input-border-color: $input-color;
