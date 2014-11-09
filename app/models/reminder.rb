@@ -11,7 +11,7 @@ class Reminder < ActiveRecord::Base
   validates :title, presence: true
   validates :due_at, presence: true
 
-  delegate :email, to: :user
+  delegate :email, :email_confirmed?, to: :user
 
   def self.due
     where("due_at < ? AND (sent_at IS NULL OR sent_at < due_at)", Time.current)

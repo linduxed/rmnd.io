@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107211814) do
+ActiveRecord::Schema.define(version: 20141109122756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,15 @@ ActiveRecord::Schema.define(version: 20141107211814) do
   add_index "reminders", ["user_id"], name: "index_reminders_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128, null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "email",                                             null: false
+    t.string   "encrypted_password",                    limit: 128, null: false
+    t.string   "confirmation_token",                    limit: 128
+    t.string   "remember_token",                        limit: 128, null: false
+    t.string   "email_confirmation_token",              limit: 128
+    t.datetime "email_confirmation_token_generated_at"
+    t.datetime "email_confirmed_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -20,6 +20,11 @@ en:
     failure_after_update: Password can't be blank.
     failure_when_forbidden: Please double check the URL or try submitting
       the form again.
+    email_confirmed: Your email address is now confirmed.
+    email_unconfirmed: To minimize the risk for spam, no reminders will be sent
+      to you before you confirm your email address.
+    signed_up: Welcome to rmnd.io. Please confirm your email by clicking the
+      link in the email we just sent you.
 
   titles:
     application: rmnd.io
@@ -104,6 +109,17 @@ en:
       sign_in: Sign in
       title: Sign up
       pitch: This is the only step. <b>rmnd.io</b> is totally free.
+
+  mailer:
+    email_confirmation:
+      subject: Please confirm your email
+      body: |
+        Welcome to rmnd.io.
+
+        Please click the link or visit the url below to confirm your email
+        address:
+
+        %{url}
 
   clearance_mailer:
     change_password:

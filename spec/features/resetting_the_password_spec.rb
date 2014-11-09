@@ -18,15 +18,11 @@ feature "Resetting the password" do
     expect(page).to have_content t("passwords.create.description")
     user.reload
     expect(user.confirmation_token).to be_present
-    expect(ActionMailer::Base.deliveries).not_to be_empty
-
-    message = ActionMailer::Base.deliveries.any? do |email|
-      email.to == ["user@example.com"] &&
-        email.subject =~ /password/i &&
-        email.body =~ /#{user.confirmation_token}/
-    end
-
-    expect(message).to be
+    expect(emails.count).to eq(1)
+    email = emails.last
+    expect(email.to).to eq ["user@example.com"]
+    expect(email.subject).to match /password/i
+    expect(email.body).to match /#{user.email_confirmation_token}/
   end
 
   scenario "with an unknown email" do

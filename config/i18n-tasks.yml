@@ -15,3 +15,4 @@ ignore_unused:
   - flashes.failure_after_create
   - flashes.failure_after_update
   - flashes.failure_when_forbidden
+  - mailer.email_confirmation.subject

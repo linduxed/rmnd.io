@@ -12,6 +12,7 @@ describe Reminder do
 
   describe "delegations" do
     it { should delegate_method(:email).to(:user) }
+    it { should delegate_method(:email_confirmed?).to(:user) }
   end
 
   describe "self.due" do

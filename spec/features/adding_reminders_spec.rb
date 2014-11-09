@@ -47,6 +47,16 @@ feature "Adding reminders" do
     click_button button("reminder.create")
   end
 
+  scenario "with an unconfirmed email" do
+    visit reminders_path(as: create(:user, :unconfirmed_email))
+
+    fill_in field("reminder.title"), with: "Buy milk"
+    fill_in field("reminder.due_at"), with: "2014-11-06 22:34"
+    click_button button("reminder.create")
+
+    expect(page).to have_content t("flashes.email_unconfirmed")
+  end
+
   def repeat_frequency(name)
     t(name, scope: "reminders.repeat_frequencies")
   end

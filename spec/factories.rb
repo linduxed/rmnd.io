@@ -2,6 +2,14 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
     password "password"
+
+    trait :confirmed_email do
+      email_confirmed_at { Time.current }
+    end
+
+    trait :unconfirmed_email do
+      email_confirmed_at nil
+    end
   end
 
   factory :reminder do

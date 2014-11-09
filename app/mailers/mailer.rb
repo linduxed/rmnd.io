@@ -5,4 +5,9 @@ class Mailer < ActionMailer::Base
     @reminder = reminder
     mail to: @reminder.email, subject: @reminder.title
   end
+
+  def email_confirmation(user)
+    @user = user
+    mail to: @user.email, subject: t("mailer.email_confirmation.subject")
+  end
 end

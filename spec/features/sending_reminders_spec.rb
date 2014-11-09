@@ -3,8 +3,9 @@ require "rails_helper"
 feature "Sending reminders" do
   scenario "by running the rake task" do
     travel_to Time.current do
-      alice = create(:user, email: "alice@example.com")
-      bob = create(:user, email: "bob@example.com")
+      alice = create(:user, :confirmed_email, email: "alice@example.com")
+      bob = create(:user, :confirmed_email, email: "bob@example.com")
+      chris = create(:user, :unconfirmed_email, email: "chris@example.com")
       create(
         :reminder,
         user: alice,
@@ -23,6 +24,13 @@ feature "Sending reminders" do
         :reminder,
         user: bob,
         title: "Buy milk",
+        due_at: 1.minute.ago,
+        sent_at: 10.minutes.ago,
+      )
+      create(
+        :reminder,
+        user: chris,
+        title: "Confirm your email",
         due_at: 1.minute.ago,
         sent_at: 10.minutes.ago,
       )
