@@ -71,8 +71,15 @@ en:
 
   home_pages:
     show:
-      tagline: Don't forget stuff
-      intro: Be reminded by email.
+      tagline: Don't forget things
+      intro: |
+        Push notifications usually appear once before disappearing.
+
+        Emails land in your inbox and won't go away until you actively remove
+        them.
+
+        Add reminders for the things you have to remember and we'll send you an
+        email so you won't forget.
 
   reminders:
     repeat_frequencies:
