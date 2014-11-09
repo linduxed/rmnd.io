@@ -21,6 +21,7 @@ ul.reminders {
 }
 
 .reminders .reminder {
+  @include clearfix;
   border: $reminder-border;
   border-bottom: none;
   padding: 0.75em 1em;
@@ -41,5 +42,26 @@ ul.reminders {
   .due-at {
     font-size: 0.8em;
   }
-}
 
+  .content {
+    @include span-columns(8);
+  }
+
+  .cancel-button {
+    @include span-columns(4);
+    @include omega();
+
+    font-size: 0.8em;
+  }
+
+  @include media($small-screen-up) {
+    .content {
+      @include span-columns(10);
+    }
+
+    .cancel-button {
+      @include span-columns(2);
+      @include omega();
+    }
+  }
+}

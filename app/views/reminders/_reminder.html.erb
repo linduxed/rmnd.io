@@ -1,15 +1,22 @@
-<li class="reminder">
-  <h3 class="title"><%= reminder.title %></h3>
-  <p class="due-at">
-    <%= time_tag reminder.due_at %>
-    <% if reminder.repeating? %>
-      <%= t(
-            ".repeats",
-            frequency: t(
-              reminder.repeat_frequency,
-              scope: "reminders.repeat_frequencies",
-            ).downcase,
-          ) %>
-    <% end %>
-  </p>
-</li>
+<%= content_tag_for :li, reminder do %>
+  <div class="content">
+    <h3 class="title"><%= reminder.title %></h3>
+    <p class="due-at">
+      <%= time_tag reminder.due_at %>
+      <% if reminder.repeating? %>
+        <%= t(
+              ".repeats",
+              frequency: t(
+                reminder.repeat_frequency,
+                scope: "reminders.repeat_frequencies",
+              ).downcase,
+            ) %>
+      <% end %>
+    </p>
+  </div>
+  <%= button_to(
+    t(".cancel"),
+    reminder_cancellation_path(reminder),
+    class: "danger-button cancel-button",
+  ) %>
+<% end %>

@@ -14,7 +14,12 @@ class Reminder < ActiveRecord::Base
   delegate :email, :email_confirmed?, to: :user
 
   def self.due
-    where("due_at < ? AND (sent_at IS NULL OR sent_at < due_at)", Time.current)
+    where("due_at < ? AND (sent_at IS NULL OR sent_at < due_at)", Time.current).
+      uncancelled
+  end
+
+  def self.uncancelled
+    where("cancelled_at IS NULL")
   end
 
   def mark_as_sent!
@@ -35,6 +40,10 @@ class Reminder < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def cancel!
+    update!(cancelled_at: Time.current)
   end
 
   private

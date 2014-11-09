@@ -23,6 +23,7 @@ en:
     email_confirmed: Your email address is now confirmed.
     email_unconfirmed: To minimize the risk for spam, no reminders will be sent
       to you before you confirm your email address.
+    reminder_cancelled: The reminder was cancelled.
     signed_up: Welcome to rmnd.io. Please confirm your email by clicking the
       link in the email we just sent you.
 
@@ -82,6 +83,7 @@ en:
       yearly: Yearly
     reminder:
       repeats: Repeats %{frequency}
+      cancel: Cancel
     index:
       add: Add a reminder
       reminders: Your reminders

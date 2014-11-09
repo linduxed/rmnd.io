@@ -56,6 +56,12 @@ input[type=submit],
   padding: 0.5em 0.75em;
 }
 
+input[type=submit].danger-button,
+.danger-button {
+  border-color: complement($accent-color);
+  color: complement($accent-color);
+}
+
 input[type=submit].primary-button {
   background: $accent-color;
   border-radius: 0.25em;

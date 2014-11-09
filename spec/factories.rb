@@ -16,5 +16,13 @@ FactoryGirl.define do
     user
     sequence(:title) { |n| "Reminder #{n}" }
     due_at { 1.day.from_now }
+
+    trait :cancelled do
+      cancelled_at { Time.current }
+    end
+
+    trait :uncancelled do
+      cancelled_at nil
+    end
   end
 end

@@ -29,6 +29,14 @@ feature "Sending reminders" do
       )
       create(
         :reminder,
+        :cancelled,
+        user: bob,
+        title: "Cancelled",
+        due_at: 1.minute.ago,
+        sent_at: 10.minutes.ago,
+      )
+      create(
+        :reminder,
         user: chris,
         title: "Confirm your email",
         due_at: 1.minute.ago,

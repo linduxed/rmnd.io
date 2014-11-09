@@ -15,6 +15,7 @@ end
 
 RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include ActionView::RecordIdentifier
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!

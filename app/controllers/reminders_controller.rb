@@ -2,7 +2,7 @@ class RemindersController < ApplicationController
   before_action :authorize
 
   def index
-    @reminders = reminders
+    @reminders = reminders.uncancelled
     @reminder = Reminder.new
   end
 

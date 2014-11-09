@@ -19,6 +19,7 @@ describe Reminder do
     it "returns due reminders" do
       travel_to Time.current do
         create(described_class, due_at: 2.minutes.ago, sent_at: 1.minute.ago)
+        create(described_class, :cancelled, due_at: 1.minute.ago, sent_at: nil)
         due = [
           create(described_class, due_at: 1.minute.ago, sent_at: nil),
           create(described_class, due_at: 1.minute.ago, sent_at: 2.minutes.ago),
@@ -26,6 +27,15 @@ describe Reminder do
 
         expect(described_class.due).to match_array due
       end
+    end
+  end
+
+  describe "self.uncancelled" do
+    it "returns reminders that are not cancelled" do
+      create(described_class, :cancelled)
+      uncancelled = [create(described_class, :uncancelled)]
+
+      expect(described_class.uncancelled).to match_array uncancelled
     end
   end
 
@@ -172,6 +182,19 @@ describe Reminder do
       reminder.due_at = "tomorrow at 4"
 
       expect(reminder.due_at).to eq(1.day.from_now.change(hour: 16))
+    end
+  end
+
+  describe "#cancel!" do
+    it "cancels the reminder" do
+      travel_to Time.current.beginning_of_minute do
+        reminder = create(described_class, cancelled_at: nil)
+
+        reminder.cancel!
+
+        reminder.reload
+        expect(reminder.cancelled_at).to eq(Time.current)
+      end
     end
   end
 end
