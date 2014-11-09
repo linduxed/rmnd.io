@@ -5,11 +5,11 @@ $reminder-border: 1px solid $separator-color;
   margin-bottom: 3em;
 
   .reminder_title {
-    @include span-columns(8);
+    @include span-columns(7);
   }
 
   .reminder_due_at {
-    @include span-columns(4);
+    @include span-columns(5);
     @include omega();
   }
 }

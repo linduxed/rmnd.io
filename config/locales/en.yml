@@ -22,7 +22,8 @@ en:
       the form again.
     email_confirmed: Your email address is now confirmed.
     email_unconfirmed: To minimize the risk for spam, no reminders will be sent
-      to you before you confirm your email address.
+      before you confirm your email address. Check your inbox for the
+      confirmation link.
     reminder_cancelled: The reminder was cancelled.
     signed_up: Welcome to rmnd.io. Please confirm your email by clicking the
       link in the email we just sent you.
@@ -49,7 +50,7 @@ en:
     placeholders:
       reminder:
         title: Buy more milk
-        due_at: tomorrow
+        due_at: tomorrow at 4 or 12/24
 
   helpers:
     submit:
