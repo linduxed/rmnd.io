@@ -14,6 +14,10 @@
 <% end %>
 
 <h2><%= t(".reminders") %></h2>
-<ul class="reminders">
-  <%= render @reminders %>
-</ul>
+<% if @reminders.any? %>
+  <ul class="reminders">
+    <%= render @reminders %>
+  </ul>
+<% else %>
+  <%= t(".no_reminders") %>
+<% end %>

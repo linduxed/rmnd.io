@@ -94,6 +94,8 @@ en:
     index:
       add: Add a reminder
       reminders: Your reminders
+      no_reminders: This is where your reminders will show up. Add one using the
+        form above.
 
   passwords:
     create:
