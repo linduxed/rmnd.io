@@ -37,12 +37,13 @@ body {
   border-radius: 0.25em;
   border: 1px solid $flash-notice-border-color;
   color: $flash-notice-color;
+  line-height: 1.7;
   margin-bottom: 0.5em;
   padding: 0.5em 0.5em;
 
   &:before {
-    @include icon("cross");
-    content: "\f081";
+    @include icon;
+    content: "\f03a";
     font-size: 1.2em;
     padding: 0 0.4em 0 0.1em;
     position: relative;
@@ -53,4 +54,9 @@ body {
 .flash.alert {
   border-color: $flash-alert-border-color;
   color: $flash-alert-color;
+
+  &:before {
+    @include icon;
+    content: "\f081";
+  }
 }
