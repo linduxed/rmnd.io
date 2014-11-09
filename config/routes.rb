@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create]
   resources :users, only: Clearance.configuration.user_actions do
     resource :password,
-      controller: 'clearance/passwords',
+      controller: "clearance/passwords",
       only: [:create, :edit, :update]
     get "email_confirmations/:token",
       to: "email_confirmations#update",

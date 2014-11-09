@@ -45,4 +45,13 @@ feature "Signing up" do
 
     expect(page).not_to have_button t("application.navigation.sign_out")
   end
+
+  scenario "from the home page" do
+    visit root_path
+    fill_in field("user.email"), with: "user@example.com"
+    fill_in field("user.password"), with: "password"
+    click_button button("user.create")
+
+    expect(page).to have_button t("application.navigation.sign_out")
+  end
 end
