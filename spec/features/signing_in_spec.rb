@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Signing in" do
   scenario "with valid email and password" do
-    create(:user, email: "user@example.com", password: "password")
+    user = create(:user, email: "user@example.com", password: "password")
 
     visit sign_in_path
     fill_in field("session.email"), with: "user@example.com"
@@ -10,6 +10,8 @@ feature "Signing in" do
     click_button button("session.submit")
 
     expect(page).to have_button t("application.navigation.sign_out")
+    expect(analytics).to have_tracked("Signed in").for_user(user)
+    expect(analytics).to have_identified(user)
   end
 
   scenario "with valid mixed-case email and password " do

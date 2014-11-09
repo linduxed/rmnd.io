@@ -26,6 +26,8 @@ feature "Signing up" do
       user_id: user.id,
       token: user.email_confirmation_token,
     )
+    expect(analytics).to have_tracked("Signed up").for_user(user)
+    expect(analytics).to have_identified(user)
   end
 
   scenario "with an invalid email" do

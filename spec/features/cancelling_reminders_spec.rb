@@ -18,5 +18,7 @@ feature "Cancelling reminders" do
 
     expect(page).to have_content t("flashes.reminder_cancelled")
     expect(page).not_to have_content("Buy milk")
+    expect(analytics).to have_tracked("Cancelled reminder").for_user(user)
+    expect(analytics).to have_identified(user)
   end
 end

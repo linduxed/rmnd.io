@@ -2,7 +2,9 @@ require "rails_helper"
 
 feature "Adding reminders" do
   scenario "with a normal due date" do
-    visit reminders_path(as: create(:user))
+    user = create(:user)
+
+    visit reminders_path(as: user)
 
     fill_in field("reminder.title"), with: "Buy milk"
     fill_in field("reminder.due_at"), with: "2014-11-06 22:34"
@@ -10,6 +12,8 @@ feature "Adding reminders" do
 
     expect(page).to have_content "Buy milk"
     expect(page).to have_content l(Time.new(2014, 11, 6, 22, 34), format: :long)
+    expect(analytics).to have_tracked("Added reminder").for_user(user)
+    expect(analytics).to have_identified(user)
   end
 
   scenario "with human due date" do

@@ -31,6 +31,7 @@ GEM
     airbrake (4.1.0)
       builder
       multi_json
+    analytics-ruby (2.0.11)
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
     bcrypt (3.1.9)
@@ -239,6 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  analytics-ruby (~> 2.0.0)
   awesome_print
   bourbon (~> 3.2.1)
   byebug

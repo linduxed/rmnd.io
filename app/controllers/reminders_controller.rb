@@ -10,6 +10,7 @@ class RemindersController < ApplicationController
     @reminder = reminders.new(reminder_params)
 
     if @reminder.save
+      analytics.track_add_reminder
       unless current_user.email_confirmed?
         flash.alert = t("flashes.email_unconfirmed")
       end
