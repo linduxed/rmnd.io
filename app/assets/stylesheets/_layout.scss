@@ -4,7 +4,7 @@ body {
 
 .site-header {
   @include outer-container;
-  padding: 3em 0;
+  padding: 3em flex-gutter();
 
   h1 {
     float: left;
@@ -30,6 +30,7 @@ body {
 
 .site-main {
   @include outer-container;
+  padding: 0 flex-gutter();
 }
 
 .flash {
