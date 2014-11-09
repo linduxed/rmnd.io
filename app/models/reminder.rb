@@ -22,6 +22,10 @@ class Reminder < ActiveRecord::Base
     where("cancelled_at IS NULL")
   end
 
+  def self.ordered
+    order("sent_at IS NOT NULL AND repeat_frequency IS NULL, due_at ASC")
+  end
+
   def mark_as_sent!
     if repeating?
       update!(sent_at: Time.current, due_at: due_at + distance_to_next_due_date)
@@ -44,6 +48,10 @@ class Reminder < ActiveRecord::Base
 
   def cancel!
     update!(cancelled_at: Time.current)
+  end
+
+  def sent?
+    sent_at.present? && !repeating?
   end
 
   private

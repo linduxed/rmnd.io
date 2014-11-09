@@ -39,6 +39,44 @@ describe Reminder do
     end
   end
 
+  describe "self.ordered" do
+    it "returns reminders ordered by due date with unsent before sent" do
+      create(
+        described_class,
+        title: "Take out the dog",
+        due_at: 5.hours.from_now,
+        sent_at: 10.minutes.ago,
+        repeat_frequency: :daily,
+      )
+      create(
+        described_class,
+        title: "Take out the trash",
+        due_at: 1.day.from_now,
+        sent_at: nil,
+      )
+      create(
+        described_class,
+        title: "Sign up for rmnd.io",
+        due_at: 1.day.ago,
+        sent_at: 1.day.ago,
+        repeat_frequency: nil,
+      )
+      create(
+        described_class,
+        title: "Buy milk",
+        due_at: 2.days.from_now,
+        sent_at: nil,
+      )
+
+      expect(described_class.ordered.map(&:title)).to eq [
+        "Take out the dog",
+        "Take out the trash",
+        "Buy milk",
+        "Sign up for rmnd.io",
+      ]
+    end
+  end
+
   describe "mark_as_sent!" do
     context "when repeating daily" do
       it "sets sent at and updates due at" do
@@ -194,6 +232,47 @@ describe Reminder do
 
         reminder.reload
         expect(reminder.cancelled_at).to eq(Time.current)
+      end
+    end
+  end
+
+  describe "#sent?" do
+    context "when repeat frequency is nil" do
+      context "when the reminder has been sent" do
+        it "returns true" do
+          reminder = described_class.new(sent_at: Time.current)
+
+          expect(reminder).to be_sent
+        end
+      end
+
+      context "when the reminder has not been sent" do
+        it "returns false" do
+          reminder = described_class.new(sent_at: nil)
+
+          expect(reminder).not_to be_sent
+        end
+      end
+    end
+
+    context "when repeat frequency is not nil" do
+      context "when the reminder has been sent" do
+        it "returns false" do
+          reminder = described_class.new(
+            sent_at: Time.current,
+            repeat_frequency: :daily,
+          )
+
+          expect(reminder).not_to be_sent
+        end
+      end
+
+      context "when the reminder has not been sent" do
+        it "returns false" do
+          reminder = described_class.new(sent_at: nil, repeat_frequency: :daily)
+
+          expect(reminder).not_to be_sent
+        end
       end
     end
   end

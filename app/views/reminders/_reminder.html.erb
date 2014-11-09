@@ -1,4 +1,4 @@
-<%= content_tag_for :li, reminder do %>
+<%= content_tag_for :li, reminder, class: reminder_class(reminder) do %>
   <div class="content">
     <h3 class="title"><%= reminder.title %></h3>
     <p class="due-at">
@@ -14,9 +14,11 @@
       <% end %>
     </p>
   </div>
-  <%= button_to(
-    t(".cancel"),
-    reminder_cancellation_path(reminder),
-    class: "danger-button cancel-button",
-  ) %>
+  <% unless reminder.sent? %>
+    <%= button_to(
+      t(".cancel"),
+      reminder_cancellation_path(reminder),
+      class: "danger-button cancel-button",
+    ) %>
+  <% end %>
 <% end %>

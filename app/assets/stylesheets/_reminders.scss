@@ -30,6 +30,11 @@ ul.reminders {
     border-bottom: $reminder-border;
   }
 
+  &.sent {
+    color: $separator-color;
+    background: tint($separator-color, 90%)
+  }
+
   h3.title, .due-at {
     display: inline;
   }
