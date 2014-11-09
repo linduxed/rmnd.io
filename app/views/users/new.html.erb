@@ -1,9 +1,11 @@
 <h2><%= t(".title") %></h2>
 
+<p><%= raw t(".pitch") %></p>
+
 <%= simple_form_for @user do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
+  <%= f.input :email, required: true %>
+  <%= f.input :password, required: true %>
   <%= f.submit class: "primary-button" %>
+  or <%= link_to t(".sign_in"), sign_in_path %>
 <% end %>
 
-<%= link_to t(".sign_in"), sign_in_path %>

@@ -1,6 +1,6 @@
 $accent-color: #00CCA3;
 
-$separator-color: tint($accent-color, 50%);
+$separator-color: shade(tint($accent-color, 80%), 20%);
 $separator-shadow-color: tint($separator-color, 20%);
 $font-color: tint(shade($separator-color, 70%), 20%);
 $site-title-color: tint($font-color, 30%);

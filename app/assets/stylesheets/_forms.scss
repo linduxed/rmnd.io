@@ -16,7 +16,6 @@ input[type=password] {
   border: 1px solid $input-border-color;
   color: $input-color;
   display: block;
-  font-size: 1.25em;
   margin-bottom: 0.5em;
   max-width: 100%;
   outline: none;
@@ -35,7 +34,6 @@ select {
   border: 1px solid $input-border-color;
   color: $input-color;
   display: block;
-  font-size: 1.25em;
   margin-bottom: 0.5em;
   max-width: 100%;
   outline: none;
@@ -44,8 +42,8 @@ select {
 }
 
 input[type=submit] {
-  margin-top: 1em;
-  float: right;
+  margin-top: 0.5em;
+  display: inline;
 }
 
 input[type=submit],
@@ -78,6 +76,5 @@ input[type=submit].primary-button {
 
   input[type=submit] {
     margin-top: 0;
-    float: none;
   }
 }

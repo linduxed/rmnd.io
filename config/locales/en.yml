@@ -103,6 +103,7 @@ en:
     new:
       sign_in: Sign in
       title: Sign up
+      pitch: This is the only step. <b>rmnd.io</b> is totally free.
 
   clearance_mailer:
     change_password:

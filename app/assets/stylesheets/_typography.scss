@@ -1,11 +1,11 @@
-$base-font-family: "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-family: "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif;
 $light: 300;
 $medium: 400;
 $bold: 700;
 
 body {
   color: $font-color;
-  font-family: $base-font-family;
+  font-family: $font-family;
   font-weight: $light;
 }
 
