@@ -2,6 +2,11 @@
 
 <p><%= link_to t(".forgot_password"), new_password_path %></p>
 
+<% flash.each do |key, value| -%>
+  <div class="flash <%= key %>"><%= value %></div>
+  <% flash.delete(key) %>
+<% end -%>
+
 <%= simple_form_for :session, url: session_path do |f| %>
   <%= f.input :email %>
   <%= f.input :password %>

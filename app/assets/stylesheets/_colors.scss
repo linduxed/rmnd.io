@@ -10,3 +10,8 @@ $input-background-color: none;
 $input-color: $link-color;
 $input-border-color: $input-color;
 $input-placeholder-color: tint($input-color, 70%);
+
+$flash-notice-color: $link-color;
+$flash-notice-border-color: $flash-notice-color;
+$flash-alert-color: complement($link-color);
+$flash-alert-border-color: $flash-alert-color;
