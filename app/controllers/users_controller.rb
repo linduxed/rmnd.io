@@ -13,4 +13,14 @@ class UsersController < Clearance::UsersController
       render :new
     end
   end
+
+  private
+
+  def user_from_params
+    User.new(user_params)
+  end
+
+  def user_params
+    params.fetch(:user, {}).permit(:email, :password, :time_zone)
+  end
 end

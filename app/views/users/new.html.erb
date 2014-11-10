@@ -5,6 +5,7 @@
 <%= simple_form_for @user do |f| %>
   <%= f.input :email, required: true %>
   <%= f.input :password, required: true %>
+  <%= f.input :time_zone, include_blank: false %>
   <%= f.submit class: "primary-button" %>
   or <%= link_to t(".sign_in"), sign_in_path %>
 <% end %>

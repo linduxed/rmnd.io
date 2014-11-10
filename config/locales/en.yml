@@ -47,6 +47,7 @@ en:
       user:
         email: Email address
         password: Password
+        time_zone: Time zone
     placeholders:
       reminder:
         title: Buy more milk

@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
 
   has_many :reminders, dependent: :destroy
 
+  validates :time_zone, presence: true,
+    inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
+
   def require_email_confirmation!
     update!(
       email_confirmed_at: nil,

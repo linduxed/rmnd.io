@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
     password "password"
+    time_zone "UTC"
 
     trait :confirmed_email do
       email_confirmed_at { Time.current }
