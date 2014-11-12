@@ -51,6 +51,16 @@ feature "Adding reminders" do
     click_button button("reminder.create")
   end
 
+  scenario "with an unparseable due date" do
+    visit reminders_path(as: create(:user))
+
+    fill_in field("reminder.title"), with: "Buy milk"
+    fill_in field("reminder.due_at"), with: "not a date"
+    click_button button("reminder.create")
+
+    expect(find_field(field("reminder.due_at")).value).to be_blank
+  end
+
   scenario "with an unconfirmed email" do
     visit reminders_path(as: create(:user, :unconfirmed_email))
 

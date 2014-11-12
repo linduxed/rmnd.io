@@ -40,7 +40,7 @@ class Reminder < ActiveRecord::Base
 
   def due_at=(due_at)
     if due_at.is_a? String
-      super Time.zone.local_to_utc(Chronic.parse(due_at))
+      super parsed_time(due_at)
     else
       super
     end
@@ -62,6 +62,14 @@ class Reminder < ActiveRecord::Base
     when "weekly" then 1.week
     when "monthly" then 1.month
     when "yearly" then 1.year
+    end
+  end
+
+  def parsed_time(string)
+    time = Chronic.parse(string)
+
+    if time.present?
+      Time.zone.local_to_utc(time)
     end
   end
 end
