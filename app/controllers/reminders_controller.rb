@@ -16,7 +16,7 @@ class RemindersController < ApplicationController
       end
       redirect_to reminders_path
     else
-      @reminders = reminders.reload
+      @reminders = reminders.uncancelled.ordered
       render :index
     end
   end
