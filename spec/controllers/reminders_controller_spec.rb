@@ -13,7 +13,7 @@ describe RemindersController do
         allow(reminder).to receive(:save).and_return(true)
         params = {
           due_at: "2014-11-07 21:38",
-          repeat_frequency: "0",
+          repeat_frequency: "daily",
           title: "Buy milk",
         }.with_indifferent_access
         sign_in_as user
