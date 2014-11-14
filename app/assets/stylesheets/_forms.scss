@@ -84,3 +84,24 @@ input[type=submit].primary-button {
     margin-top: 0;
   }
 }
+
+.field_with_errors .error {
+  background: complement($accent-color);
+  border-radius: 0.25em;
+  color: white;
+  font-weight: $medium;
+  padding: 0.25em 0.35em;
+  position: relative;
+  top: 0.25em;
+
+  &:before {
+    border-bottom: 0.25em solid complement($accent-color);
+    border-left: 0.25em solid transparent;
+    border-right: 0.25em solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    top: -0.25em;
+    width: 0;
+  }
+}
