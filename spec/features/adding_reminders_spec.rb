@@ -16,7 +16,7 @@ feature "Adding reminders" do
     expect(analytics).to have_identified(user)
   end
 
-  scenario "with human due date" do
+  scenario "with a human due date" do
     travel_to Time.current do
       visit reminders_path(as: create(:user))
 
