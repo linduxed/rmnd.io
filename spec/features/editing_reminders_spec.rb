@@ -21,7 +21,7 @@ feature "Editing reminders" do
       )
 
       fill_in field("reminder.title"), with: "Don't buy milk"
-      fill_in field("reminder.due_at"), with: 1.day.from_now
+      fill_in field("reminder.due_at"), with: 1.day.from_now.iso8601
       select repeat_frequency("daily"), from: field("reminder.repeat_frequency")
       click_button button("reminder.update")
 
@@ -44,7 +44,7 @@ feature "Editing reminders" do
       reminder = create(:reminder, title: "Buy more milk", user: user)
 
       visit edit_reminder_path(reminder, as: user)
-      fill_in field("reminder.due_at"), with: 10.minutes.ago
+      fill_in field("reminder.due_at"), with: 10.minutes.ago.iso8601
       click_button button("reminder.update")
 
       expect(page).not_to have_content t("flashes.reminder_updated")

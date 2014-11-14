@@ -58,7 +58,7 @@ feature "Signing up" do
   end
 
   scenario "and setting a time zone" do
-    travel_to Time.utc(2014, 11, 15, 12, 0, 0) do
+    travel_to Time.zone.local(2014, 11, 15, 12, 0, 0) do
       visit sign_up_path
       fill_in field("user.email"), with: "user@example.com"
       fill_in field("user.password"), with: "password"
@@ -66,15 +66,12 @@ feature "Signing up" do
       click_button button("user.create")
       visit reminders_path
       fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: "2014-11-15 12:00"
+      fill_in field("reminder.due_at"), with: "2014-11-15 10:00"
       click_button button("reminder.create")
 
-      expect(page).to have_content l(
-        Time.utc(2014, 11, 15, 12, 0, 0),
-        format: :long,
-      )
+      expect(page).to have_content "November 15, 2014 10:00"
       reminder = Reminder.last
-      expect(reminder.due_at).to eq Time.utc(2014, 11, 15, 20, 0, 0)
+      expect(reminder.due_at).to eq Time.zone.local(2014, 11, 15, 18, 0, 0)
     end
   end
 end

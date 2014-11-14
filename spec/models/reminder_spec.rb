@@ -224,15 +224,14 @@ describe Reminder do
 
       reminder.due_at = "2014-11-07 21:58"
 
-      expect(reminder.due_at).to eq(Time.utc(2014, 11, 7, 21, 58))
+      expect(reminder.due_at).to eq(Time.zone.local(2014, 11, 7, 21, 58))
     end
 
     it "accepts human readable strings" do
       reminder = described_class.new
 
-      reminder.due_at = "tomorrow at 4"
-
-      expect(reminder.due_at).to eq(1.day.from_now.change(hour: 16))
+      reminder.due_at = "tomorrow"
+      expect(reminder.due_at).to eq(Time.current.tomorrow.change(hour: 12))
     end
   end
 

@@ -20,16 +20,19 @@ feature "Adding reminders" do
   end
 
   scenario "with a human due date" do
-    travel_to Time.current do
+    travel_to Time.zone.local(2014, 11, 20, 12, 0, 0) do
       visit reminders_path(as: create(:user))
 
       fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: "tomorrow at 4"
+      fill_in field("reminder.due_at"), with: "tomorrow at 4pm"
       click_button button("reminder.create")
 
       expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content "Buy milk"
-      expect(page).to have_content l(1.day.from_now.change(hour: 16), format: :long)
+      expect(page).to have_content l(
+        Time.zone.local(2014, 11, 21, 16, 0, 0),
+        format: :long,
+      )
     end
   end
 

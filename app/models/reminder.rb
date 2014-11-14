@@ -1,3 +1,5 @@
+require "nar/parser"
+
 class Reminder < ActiveRecord::Base
   enum repeat_frequency: {
     daily: 0,
@@ -75,10 +77,6 @@ class Reminder < ActiveRecord::Base
   end
 
   def parsed_time(string)
-    time = Chronic.parse(string)
-
-    if time.present?
-      Time.zone.local_to_utc(time)
-    end
+    Nar::Parser.new(string, now: Time.current).time
   end
 end
