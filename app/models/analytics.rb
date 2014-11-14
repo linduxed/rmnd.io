@@ -26,6 +26,11 @@ class Analytics
     track(user_id: user.id, event: "Added reminder")
   end
 
+  def track_edit_reminder
+    identify
+    track(user_id: user.id, event: "Edited reminder")
+  end
+
   def track_cancel_reminder
     identify
     track(user_id: user.id, event: "Cancelled reminder")

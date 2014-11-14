@@ -15,6 +15,10 @@ describe User do
     }
   end
 
+  describe "delegations" do
+    it { should delegate_method(:unsent_reminders).to(:reminders).as(:unsent) }
+  end
+
   describe "#require_email_confirmation!" do
     context "for a user without a confirmed email" do
       it "generates a new email confirmation token" do

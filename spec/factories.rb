@@ -25,5 +25,17 @@ FactoryGirl.define do
     trait :uncancelled do
       cancelled_at nil
     end
+
+    trait :sent do
+      sent_at { Time.current }
+    end
+
+    trait :unsent do
+      sent_at nil
+    end
+
+    trait :repeating do
+      repeat_frequency :daily
+    end
   end
 end

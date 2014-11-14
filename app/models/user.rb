@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   validates :time_zone, presence: true,
     inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
 
+  def unsent_reminders
+    reminders.unsent
+  end
+
   def require_email_confirmation!
     update!(
       email_confirmed_at: nil,

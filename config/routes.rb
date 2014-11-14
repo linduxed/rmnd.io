@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       to: "email_confirmations#update",
       as: :email_confirmation
   end
-  resources :reminders, only: [:index, :create] do
+  resources :reminders, only: [:index, :create, :edit, :update] do
     resource :cancellation, only: [:create]
   end
   get "/sign_in", to: "sessions#new", as: "sign_in"

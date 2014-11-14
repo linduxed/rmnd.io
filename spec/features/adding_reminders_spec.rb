@@ -103,8 +103,4 @@ feature "Adding reminders" do
 
     expect(page).to have_content t("flashes.email_unconfirmed")
   end
-
-  def repeat_frequency(name)
-    t(name, scope: "reminders.repeat_frequencies")
-  end
 end

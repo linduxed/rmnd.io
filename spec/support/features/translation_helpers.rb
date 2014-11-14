@@ -6,4 +6,8 @@ module Features
   def button(name)
     t(name, scope: "helpers.submit")
   end
+
+  def repeat_frequency(name)
+    t(name, scope: "reminders.repeat_frequencies")
+  end
 end

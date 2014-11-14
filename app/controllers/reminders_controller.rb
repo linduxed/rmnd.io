@@ -21,9 +21,23 @@ class RemindersController < ApplicationController
     end
   end
 
+  def edit
+    @reminder = unsent_reminders.find(params[:id])
+  end
+
+  def update
+    @reminder = unsent_reminders.find(params[:id])
+    if @reminder.update(reminder_params)
+      analytics.track_edit_reminder
+      redirect_to reminders_path, notice: t("flashes.reminder_updated")
+    else
+      render :edit
+    end
+  end
+
   private
 
-  delegate :reminders, to: :current_user
+  delegate :reminders, :unsent_reminders, to: :current_user
 
   def reminder_params
     params.require(:reminder).permit(

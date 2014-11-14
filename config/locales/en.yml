@@ -24,6 +24,7 @@ en:
     email_unconfirmed: To minimize the risk for spam, no reminders will be sent
       before you confirm your email address. Check your inbox for the
       confirmation link.
+    reminder_updated: The reminder was updated.
     reminder_cancelled: The reminder was cancelled.
     signed_up: Welcome to rmnd.io. Please confirm your email by clicking the
       link in the email we just sent you.
@@ -57,6 +58,7 @@ en:
     submit:
       reminder:
         create: Add reminder
+        update: Save reminder
       password:
         submit: Reset password
       password_reset:
@@ -98,6 +100,8 @@ en:
       reminders: Your reminders
       no_reminders: This is where your reminders will show up. Add one using the
         form above.
+    edit:
+      title: "Edit reminder"
 
   passwords:
     create:

@@ -77,6 +77,18 @@ describe Reminder do
     end
   end
 
+  describe "self.unsent" do
+    it "returns unsent reminders" do
+      create(:reminder, :sent)
+      unsent = [
+        create(:reminder, :unsent),
+        create(:reminder, :sent, :repeating),
+      ]
+
+      expect(described_class.unsent).to eq unsent
+    end
+  end
+
   describe "mark_as_sent!" do
     context "when repeating daily" do
       it "sets sent at and updates due at" do
@@ -272,6 +284,47 @@ describe Reminder do
           reminder = described_class.new(sent_at: nil, repeat_frequency: :daily)
 
           expect(reminder).not_to be_sent
+        end
+      end
+    end
+  end
+
+  describe "#unsent?" do
+    context "when repeat frequency is nil" do
+      context "when the reminder has been sent" do
+        it "returns false" do
+          reminder = described_class.new(sent_at: Time.current)
+
+          expect(reminder).not_to be_unsent
+        end
+      end
+
+      context "when the reminder has not been sent" do
+        it "returns true" do
+          reminder = described_class.new(sent_at: nil)
+
+          expect(reminder).to be_unsent
+        end
+      end
+    end
+
+    context "when repeat frequency is not nil" do
+      context "when the reminder has been sent" do
+        it "returns true" do
+          reminder = described_class.new(
+            sent_at: Time.current,
+            repeat_frequency: :daily,
+          )
+
+          expect(reminder).to be_unsent
+        end
+      end
+
+      context "when the reminder has not been sent" do
+        it "returns true" do
+          reminder = described_class.new(sent_at: nil, repeat_frequency: :daily)
+
+          expect(reminder).to be_unsent
         end
       end
     end
