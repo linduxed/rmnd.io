@@ -1,21 +1,4 @@
 <%= content_tag_for :li, reminder, class: reminder_class(reminder) do %>
-  <div class="content">
-    <h3 class="title">
-      <%= link_to_if reminder.unsent?, reminder.title, edit_reminder_path(reminder) %>
-    </h3>
-    <p class="due-at">
-      <%= time_tag reminder.due_at %>
-      <% if reminder.repeating? %>
-        <%= t(
-              ".repeats",
-              frequency: t(
-                reminder.repeat_frequency,
-                scope: "reminders.repeat_frequencies",
-              ).downcase,
-            ) %>
-      <% end %>
-    </p>
-  </div>
   <% unless reminder.sent? %>
     <%= button_to(
       t(".cancel"),
@@ -23,4 +6,19 @@
       class: "danger-button cancel-button",
     ) %>
   <% end %>
+  <h3 class="title">
+    <%= link_to_if reminder.unsent?, reminder.title, edit_reminder_path(reminder) %>
+  </h3>
+  <p class="due-at">
+    <%= time_tag reminder.due_at %>
+    <% if reminder.repeating? %>
+      <%= t(
+            ".repeats",
+            frequency: t(
+              reminder.repeat_frequency,
+              scope: "reminders.repeat_frequencies",
+            ).downcase,
+          ) %>
+    <% end %>
+  </p>
 <% end %>

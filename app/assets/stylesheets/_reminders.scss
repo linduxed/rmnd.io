@@ -21,7 +21,6 @@ ul.reminders {
 }
 
 .reminders .reminder {
-  @include clearfix;
   border: $reminder-border;
   border-bottom: none;
   padding: 0.75em 1em;
@@ -31,42 +30,29 @@ ul.reminders {
   }
 
   &.sent {
+    background: tint($separator-color, 90%);
     color: $separator-color;
-    background: tint($separator-color, 90%)
   }
 
   h3.title, .due-at {
-    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   h3.title {
     font-weight: $light;
     font-size: 1.2em;
+    margin-bottom: 0.1em;
   }
 
   .due-at {
     font-size: 0.8em;
-  }
-
-  .content {
-    @include span-columns(8);
+    margin: 0;
   }
 
   .cancel-button {
-    @include span-columns(4);
-    @include omega();
-
+    float: right;
     font-size: 0.8em;
-  }
-
-  @include media($small-screen-up) {
-    .content {
-      @include span-columns(10);
-    }
-
-    .cancel-button {
-      @include span-columns(2);
-      @include omega();
-    }
   }
 }
