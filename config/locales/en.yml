@@ -24,6 +24,7 @@ en:
     email_unconfirmed: To minimize the risk for spam, no reminders will be sent
       before you confirm your email address. Check your inbox for the
       confirmation link.
+    reminder_added: The reminder was added.
     reminder_updated: The reminder was updated.
     reminder_cancelled: The reminder was cancelled.
     signed_up: Welcome to rmnd.io. Please confirm your email by clicking the

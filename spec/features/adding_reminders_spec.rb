@@ -10,6 +10,7 @@ feature "Adding reminders" do
     fill_in field("reminder.due_at"), with: "2014-11-06 22:34"
     click_button button("reminder.create")
 
+    expect(page).to have_content t("flashes.reminder_added")
     expect(page).to have_content "Buy milk"
     expect(page).to have_content l(Time.new(2014, 11, 6, 22, 34), format: :long)
     expect(analytics).to have_tracked("Added reminder").for_user(user)
@@ -24,6 +25,7 @@ feature "Adding reminders" do
       fill_in field("reminder.due_at"), with: "tomorrow at 4"
       click_button button("reminder.create")
 
+    expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content "Buy milk"
       expect(page).to have_content l(1.day.from_now.change(hour: 16), format: :long)
     end
@@ -37,6 +39,7 @@ feature "Adding reminders" do
     select repeat_frequency("daily"), from: field("reminder.repeat_frequency")
     click_button button("reminder.create")
 
+    expect(page).to have_content t("flashes.reminder_added")
     expect(page).to have_content "Buy milk"
     expect(page).to have_content l(Time.new(2014, 11, 6, 22, 34), format: :long)
     expect(page).to have_content t(
@@ -73,6 +76,7 @@ feature "Adding reminders" do
 
     click_button button("reminder.create")
 
+    expect(page).not_to have_content t("flashes.reminder_added")
     expect(page).not_to have_content t("reminders.index.no_reminders")
     expect(page).to have_content("Take out the trash")
     expect(page).to have_content("Buy milk")
@@ -91,6 +95,7 @@ feature "Adding reminders" do
     fill_in field("reminder.due_at"), with: "not a date"
     click_button button("reminder.create")
 
+    expect(page).not_to have_content t("flashes.reminder_added")
     expect(find_field(field("reminder.due_at")).value).to be_blank
   end
 
@@ -101,6 +106,7 @@ feature "Adding reminders" do
     fill_in field("reminder.due_at"), with: "2014-11-06 22:34"
     click_button button("reminder.create")
 
+    expect(page).to have_content t("flashes.reminder_added")
     expect(page).to have_content t("flashes.email_unconfirmed")
   end
 end

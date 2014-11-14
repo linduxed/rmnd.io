@@ -14,7 +14,7 @@ class RemindersController < ApplicationController
       unless current_user.email_confirmed?
         flash.alert = t("flashes.email_unconfirmed")
       end
-      redirect_to reminders_path
+      redirect_to reminders_path, notice: t("flashes.reminder_added")
     else
       @reminders = reminders.uncancelled.ordered
       render :index
