@@ -85,13 +85,13 @@ en:
     show:
       tagline: Don't forget things
       intro: |
-        Push notifications usually appear once before disappearing.
+        Push notifications are disruptive and ephemeral. Emails are persistant and available on all platforms.
 
-        Emails land in your inbox and won't go away until you actively remove
-        them.
+        Add a reminder using <b>rmnd.io</b> and we'll send you an email when it's time.
 
-        Add reminders for the things you have to remember and we'll send you an
-        email so you won't forget.
+        <b>rmnd.io</b> is open source and the code is avaialable <a href="https://github.com/calleerlandsson/rmnd.io">on GitHub</a>.
+
+        If you have any questions or feedback, email us on <a href="mailto:hello@rmnd.io">hello@rmnd.io</a>.
 
   reminders:
     repeat_frequencies:
@@ -134,7 +134,7 @@ en:
     new:
       sign_in: Sign in
       title: Sign up
-      pitch: This is the only step. <b>rmnd.io</b> is totally free.
+      pitch: This is the only step. <b>rmnd.io</b> is a free service.
     edit:
       title: Edit settings
       go_back: "Go back"
