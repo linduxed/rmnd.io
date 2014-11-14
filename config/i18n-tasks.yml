@@ -12,6 +12,7 @@ ignore_unused:
   - simple_form.*
   - time.*
   - titles.*
+  - errors.messages.*
   - flashes.failure_after_create
   - flashes.failure_after_update
   - flashes.failure_when_forbidden

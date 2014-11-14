@@ -71,6 +71,10 @@ en:
         create: Sign up
         update: Save settings
 
+  errors:
+    messages:
+      past: can't be in the past
+
   application:
     navigation:
       sign_in: Sign in

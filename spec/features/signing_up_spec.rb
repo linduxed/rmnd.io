@@ -58,18 +58,23 @@ feature "Signing up" do
   end
 
   scenario "and setting a time zone" do
-    visit sign_up_path
-    fill_in field("user.email"), with: "user@example.com"
-    fill_in field("user.password"), with: "password"
-    select "Stockholm", from: field("user.time_zone")
-    click_button button("user.create")
-    visit reminders_path
-    fill_in field("reminder.title"), with: "Buy milk"
-    fill_in field("reminder.due_at"), with: "2014-11-10 07:26"
-    click_button button("reminder.create")
+    travel_to Time.current.change(usec: 0) do
+      visit sign_up_path
+      fill_in field("user.email"), with: "user@example.com"
+      fill_in field("user.password"), with: "password"
+      select "Stockholm", from: field("user.time_zone")
+      click_button button("user.create")
+      visit reminders_path
+      fill_in field("reminder.title"), with: "Buy milk"
+      fill_in field("reminder.due_at"), with: 10.minutes.from_now
+      click_button button("reminder.create")
 
-    expect(page).to have_content l(Time.new(2014, 11, 10, 7, 26), format: :long)
-    reminder = Reminder.last
-    expect(reminder.due_at).to eq Time.utc(2014, 11, 10, 6, 26)
+      expect(page).to have_content l(
+        Time.use_zone("Stockholm") { 10.minutes.from_now },
+        format: :long,
+      )
+      reminder = Reminder.last
+      expect(reminder.due_at).to eq 10.minutes.from_now
+    end
   end
 end

@@ -12,6 +12,7 @@ class Reminder < ActiveRecord::Base
   validates :due_at, presence: true
 
   delegate :email, :email_confirmed?, to: :user
+  delegate :repeat_frequencies, to: :class
 
   def self.due
     where("due_at < ? AND (sent_at IS NULL OR sent_at < due_at)", Time.current).
@@ -77,7 +78,7 @@ class Reminder < ActiveRecord::Base
     time = Chronic.parse(string)
 
     if time.present?
-      Time.zone.local_to_utc(time)
+      time.localtime
     end
   end
 end

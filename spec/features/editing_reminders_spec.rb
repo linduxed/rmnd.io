@@ -32,6 +32,22 @@ feature "Editing reminders" do
     end
   end
 
+  scenario "trying to set the due date in the past" do
+    travel_to Time.current do
+      user = create(:user)
+      reminder = create(:reminder, title: "Buy more milk", user: user)
+
+      visit edit_reminder_path(reminder, as: user)
+      fill_in field("reminder.due_at"), with: 10.minutes.ago
+      click_button button("reminder.update")
+
+      expect(page).not_to have_content t("flashes.reminder_updated")
+      expect(page).not_to have_content l(10.minutes.ago, format: :long)
+      expect(analytics).not_to have_tracked("Edited reminder").for_user(user)
+      expect(analytics).not_to have_identified(user)
+    end
+  end
+
   scenario "trying to edit a sent reminder" do
     user = create(:user)
     sent_reminder = create(:reminder, :sent, title: "Buy more milk", user: user)
