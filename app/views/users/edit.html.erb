@@ -3,4 +3,5 @@
 <%= simple_form_for @user do |f| %>
   <%= f.input :time_zone, include_blank: false %>
   <%= f.submit class: "primary-button" %>
+  or <%= link_to t(".go_back"), reminders_path %>
 <% end %>

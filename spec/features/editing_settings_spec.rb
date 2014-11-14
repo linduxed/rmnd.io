@@ -6,6 +6,12 @@ feature "Editing settings" do
 
     visit root_path(as: user)
     click_link t("application.navigation.settings")
+
+    expect(page).to have_link(
+      t("users.edit.go_back"),
+      href: reminders_path,
+    )
+
     select "Stockholm", from: field("user.time_zone")
     click_button button("user.update")
 

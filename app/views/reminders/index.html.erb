@@ -1,5 +1,7 @@
 <h2><%= t(".add") %></h2>
-<%= render "form", reminder: @reminder %>
+<%= simple_form_for @reminder do |f| %>
+  <%= render "form_fields", f: f %>
+<% end %>
 
 <h2><%= t(".reminders") %></h2>
 <% if @reminders.any? %>

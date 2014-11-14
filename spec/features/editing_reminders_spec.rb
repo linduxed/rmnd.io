@@ -14,6 +14,12 @@ feature "Editing reminders" do
 
       visit reminders_path(as: user)
       click_link "Buy more milk"
+
+      expect(page).to have_link(
+        t("reminders.edit.go_back"),
+        href: reminders_path,
+      )
+
       fill_in field("reminder.title"), with: "Don't buy milk"
       fill_in field("reminder.due_at"), with: 1.day.from_now
       select repeat_frequency("daily"), from: field("reminder.repeat_frequency")

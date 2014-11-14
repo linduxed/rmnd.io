@@ -1,2 +1,5 @@
 <h2><%= t(".title") %></h2>
-<%= render "form", reminder: @reminder %>
+<%= simple_form_for @reminder do |f| %>
+  <%= render "form_fields", f: f %>
+  or <%= link_to t(".go_back"), reminders_path %>
+<% end %>

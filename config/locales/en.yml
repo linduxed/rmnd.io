@@ -110,6 +110,7 @@ en:
         form above.
     edit:
       title: "Edit reminder"
+      go_back: "Go back"
 
   passwords:
     create:
@@ -136,6 +137,7 @@ en:
       pitch: This is the only step. <b>rmnd.io</b> is totally free.
     edit:
       title: Edit settings
+      go_back: "Go back"
 
   mailer:
     email_confirmation:
