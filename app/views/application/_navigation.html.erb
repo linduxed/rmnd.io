@@ -1,6 +1,6 @@
 <nav>
   <% if signed_in? %>
-    Signed in as <%= current_user.email %>
+    <%= link_to t(".settings"), edit_user_path %>
     <%= button_to(
           t(".sign_out"),
           sign_out_path,

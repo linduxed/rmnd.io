@@ -1,0 +1,6 @@
+<h2><%= t(".title") %></h2>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :time_zone, include_blank: false %>
+  <%= f.submit class: "primary-button" %>
+<% end %>

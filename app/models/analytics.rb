@@ -36,6 +36,11 @@ class Analytics
     track(user_id: user.id, event: "Cancelled reminder")
   end
 
+  def track_edit_settings
+    identify
+    track(user_id: user.id, event: "Edited settings")
+  end
+
   private
 
   def identify

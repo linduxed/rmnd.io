@@ -27,6 +27,7 @@ en:
     reminder_added: The reminder was added.
     reminder_updated: The reminder was updated.
     reminder_cancelled: The reminder was cancelled.
+    settings_updated: Your settings have been updated.
     signed_up: Welcome to rmnd.io. Please confirm your email by clicking the
       link in the email we just sent you.
 
@@ -68,11 +69,13 @@ en:
         submit: Sign in
       user:
         create: Sign up
+        update: Save settings
 
   application:
     navigation:
       sign_in: Sign in
       sign_out: Sign out
+      settings: Settings
 
   home_pages:
     show:
@@ -127,6 +130,8 @@ en:
       sign_in: Sign in
       title: Sign up
       pitch: This is the only step. <b>rmnd.io</b> is totally free.
+    edit:
+      title: Edit settings
 
   mailer:
     email_confirmation:

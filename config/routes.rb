@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       to: "email_confirmations#update",
       as: :email_confirmation
   end
+  resource :user, only: [:edit, :update]
   resources :reminders, only: [:index, :create, :edit, :update] do
     resource :cancellation, only: [:create]
   end
