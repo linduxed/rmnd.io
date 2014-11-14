@@ -133,6 +133,8 @@ en:
         address:
 
         %{url}
+    reminder:
+      subject: "Reminder: %{title}"
 
   clearance_mailer:
     change_password:
