@@ -78,7 +78,7 @@ class Reminder < ActiveRecord::Base
     time = Chronic.parse(string)
 
     if time.present?
-      time.localtime
+      Time.zone.local_to_utc(time)
     end
   end
 end
