@@ -1,82 +1,96 @@
 require "active_support"
 require "active_support/core_ext"
-require "nar/am"
-require "nar/date_guess"
-require "nar/pm"
-require "nar/time_guess"
+require "nar/meridies"
+require "nar/time_factory"
 require "nar/time_of_day"
-require "nar/tomorrow"
+require "nar/date_factories"
 require "nar/time_zones"
 require "parslet"
 
 module Nar
   class Transform < Parslet::Transform
-    rule(integer: simple(:x)) { x.to_i }
-    rule(am: simple(:_)) { Am.new }
-    rule(pm: simple(:_)) { Pm.new }
-    rule(lmname: simple(:lmname)) { |c| long_month_names.fetch(c[:lmname].to_s.downcase) }
-    rule(smname: simple(:smname)) { |c| short_month_names.fetch(c[:smname].to_s.downcase) }
-    rule(tomorrow: simple(:_)) { Tomorrow.new }
-    rule(utc: simple(:_)) { TimeZones::UTC.new }
-    rule(
-      month: simple(:month),
-      day: simple(:day),
-    ) { DateGuess.new(month: month, day: day) }
-    rule(
-      month: simple(:month),
-      day: simple(:day),
-      year: simple(:year),
-    ) { DateGuess.new(year: year, month: month, day: day) }
-    rule(
-      hour: simple(:hour),
-      minute: simple(:minute),
-      second: simple(:second),
-      meridiem: simple(:meridiem),
-      time_zone: simple(:time_zone),
-    ) { TimeOfDay.new(hour, minute, second, meridiem, time_zone) }
-    rule(tod: simple(:tod)) { TimeGuess.new(tod: tod) }
-    rule(date: simple(:date_guess)) { TimeGuess.new(date_guess: date_guess) }
-    rule(
-      date: simple(:date_guess),
-      tod: simple(:tod),
-    ) { TimeGuess.new(date_guess: date_guess, tod: tod) }
-
-    def self.long_month_names
-      {
-        "january" => 1,
-        "february" => 2,
-        "march" => 3,
-        "april" => 4,
-        "may" => 5,
-        "june" => 6,
-        "july" => 7,
-        "august" => 8,
-        "september" => 9,
-        "october" => 10,
-        "november" => 11,
-        "december" => 12,
-      }
+    rule integer: simple(:string) do
+      string.to_i
     end
 
-    def self.short_month_names
-      {
-        "jan" => 1,
-        "feb" => 2,
-        "mar" => 3,
-        "apr" => 4,
-        "may" => 5,
-        "jun" => 6,
-        "jul" => 7,
-        "aug" => 8,
-        "sep" => 9,
-        "oct" => 10,
-        "nov" => 11,
-        "dec" => 12,
-      }
+    rule january: simple(:january) do
+      1
     end
 
-    def tomorrow
-      Date.tomorrow
+    rule february: simple(:january) do
+      2
+    end
+
+    rule march: simple(:march) do
+      3
+    end
+
+    rule april: simple(:april) do
+      4
+    end
+
+    rule may: simple(:may) do
+      5
+    end
+
+    rule june: simple(:june) do
+      6
+    end
+
+    rule july: simple(:july) do
+      7
+    end
+
+    rule august: simple(:august) do
+      8
+    end
+
+    rule september: simple(:september) do
+      9
+    end
+
+    rule october: simple(:october) do
+      10
+    end
+
+    rule november: simple(:november) do
+      11
+    end
+
+    rule december: simple(:december) do
+      12
+    end
+
+    rule tomorrow: simple(:tomorrow) do
+      DateFactories::Tomorrow.new
+    end
+
+    rule month: simple(:month), day: simple(:day) do
+      DateFactories::MonthDay.new(month, day)
+    end
+
+    rule month: simple(:month), day: simple(:day), year: simple(:year) do
+      DateFactories::Unambiguous.new(year, month, day)
+    end
+
+    rule am: simple(:am) do
+      Meridies::Am
+    end
+
+    rule pm: simple(:am) do
+      Meridies::Pm
+    end
+
+    rule time_of_day_components: subtree(:time_of_day_components) do
+      TimeOfDay.new(time_of_day_components)
+    end
+
+    rule utc: simple(:utc) do
+      TimeZones::UTC
+    end
+
+    rule time_components: subtree(:time_components) do
+      TimeFactory.new(time_components)
     end
   end
 end

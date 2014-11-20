@@ -1,27 +1,24 @@
-require "nar/unspecified_meridiem"
+require "nar/meridies"
 
 module Nar
   class TimeOfDay
-    attr_reader :minute, :second, :time_zone
+    attr_reader :minute, :second
 
-    def initialize(hour, minute, second, meridiem = nil, time_zone = nil)
-      @hour = hour
+    delegate :hour, to: :meridiem
+
+    def initialize(
+      hour: 12,
+      minute: 0,
+      second: 0,
+      meridiem_factory: Meridies::Unspecified
+    )
       @minute = minute
       @second = second
-      @meridiem = meridiem || UnspecifiedMeridiem.new
-      @time_zone = time_zone
-    end
-
-    def hour
-      meridiem.to_twentyfour(@hour)
+      @meridiem = meridiem_factory.new(hour)
     end
 
     def ambiguous?
       meridiem.unspecified?
-    end
-
-    def time_zone_offset
-      time_zone.try(:offset)
     end
 
     private

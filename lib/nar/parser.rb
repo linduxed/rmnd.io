@@ -12,13 +12,20 @@ module Nar
     end
 
     def time
-      t = parser.parse(string)
-      transform.apply(t).time(now)
+      time_factory.time(now)
     rescue Parslet::ParseFailed
       nil
     end
 
     private
+
+    def time_factory
+      transform.apply(tree)
+    end
+
+    def tree
+      parser.parse(string)
+    end
 
     attr_reader :string, :now, :parser, :transform
   end
