@@ -73,6 +73,7 @@ describe ReminderForm do
             repeat_frequency: "daily",
           )
           expect(reminder).to have_received(:save!)
+          expect(form.reminder).to eq reminder
         end
       end
     end

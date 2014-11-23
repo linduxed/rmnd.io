@@ -1,0 +1,8 @@
+<%= t ".intro" %>
+
+<%= t ".what", title: @reminder_form.title %>
+<%= t ".when", due_date: @reminder_form.due_date %>
+
+<%= t ".errors" %>
+
+<%= @reminder_form.errors.full_messages.map { |m| "- " + m }.join("\n") %>

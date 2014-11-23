@@ -38,4 +38,26 @@ FactoryGirl.define do
       repeat_frequency :daily
     end
   end
+
+  factory :email, class: OpenStruct do
+    to [
+      {
+        full: "to_user@example.com",
+        email: "to_user@example.com",
+        token: "to_user",
+        host: "example.com",
+        name: nil
+      },
+    ]
+    from(
+      token: "from_user",
+      host: "example.com",
+      email: "from_email@example.com",
+      full: "From User <from_user@example.com",
+      name: "From User",
+    )
+    subject "Email subject"
+    body "Email body"
+    attachments { [] }
+  end
 end

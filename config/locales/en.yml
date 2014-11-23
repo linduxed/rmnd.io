@@ -56,6 +56,13 @@ en:
         title: Buy more milk
         due_date: tomorrow at 4 or 12/24
 
+  activemodel:
+    attributes:
+      reminder_form:
+        title: What
+        due_date: When
+        repeat_frequency: Repeat
+
   helpers:
     submit:
       reminder_form:
@@ -109,8 +116,8 @@ en:
       no_reminders: This is where your reminders will show up. Add one using the
         form above.
     edit:
-      title: "Edit reminder"
-      go_back: "Go back"
+      title: Edit reminder
+      go_back: Go back
 
   passwords:
     create:
@@ -137,7 +144,7 @@ en:
       pitch: This is the only step. <b>rmnd.io</b> is a free service.
     edit:
       title: Edit settings
-      go_back: "Go back"
+      go_back: Go back
 
   mailer:
     email_confirmation:
@@ -151,6 +158,17 @@ en:
         %{url}
     reminder:
       subject: "Reminder: %{title}"
+    reminder_confirmation:
+      subject: "Confirmed: %{title}"
+      intro: Your reminder has been created.
+      what: "What: %{title}"
+      when: "When: %{due_at}"
+    reminder_error:
+      subject: "Error: %{title}"
+      intro: "This is what we gathered from what you sent us:"
+      what: "What: %{title}"
+      when: "When: %{due_date}"
+      errors: "Your reminder could not be created due to the following errors:"
 
   clearance_mailer:
     change_password:

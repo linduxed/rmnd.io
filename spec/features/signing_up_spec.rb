@@ -18,7 +18,6 @@ feature "Signing up" do
     expect(page).to have_button t("application.navigation.sign_out")
     user = User.last
     expect(user.email_confirmation_token).to be_present
-    expect(emails.count).to eq(1)
     email = emails.last
     expect(email.to).to eq ["user@example.com"]
     expect(email.subject).to eq t("mailer.email_confirmation.subject")
@@ -26,6 +25,7 @@ feature "Signing up" do
       user_id: user.id,
       token: user.email_confirmation_token,
     )
+    expect(emails.count).to eq(1)
     expect(analytics).to have_tracked("Signed up").for_user(user)
     expect(analytics).to have_identified(user)
   end

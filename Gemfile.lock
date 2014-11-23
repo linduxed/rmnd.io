@@ -6,6 +6,13 @@ GIT
       activesupport
       parslet
 
+GIT
+  remote: git://github.com/wingrunr21/griddler-mandrill.git
+  revision: cc3dec1c774eea9c7754bfb25a0daa14fa5a2c33
+  specs:
+    griddler-mandrill (1.0.2)
+      griddler
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -105,8 +112,12 @@ GEM
       activesupport
       capybara
       i18n
+    griddler (1.1.0)
+      htmlentities
+      rails (>= 3.2.0)
     highline (1.6.21)
     hike (1.2.3)
+    htmlentities (4.3.2)
     i18n (0.6.11)
     i18n-tasks (0.7.8)
       activesupport
@@ -264,6 +275,8 @@ DEPENDENCIES
   factory_girl_rails
   flutie
   formulaic
+  griddler
+  griddler-mandrill!
   halftime!
   i18n-tasks
   jquery-rails

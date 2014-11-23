@@ -130,4 +130,105 @@ feature "Adding reminders" do
     expect(page).not_to have_content t("flashes.reminder_added")
     expect(page).to have_content t("errors.messages.past")
   end
+
+  scenario "via email" do
+    travel_to Time.new(2014, 11, 23, 21, 20, 0, 0) do
+      user = create(
+        :user,
+        email: "user@example.com",
+        time_zone: "Pacific Time (US & Canada)",
+      )
+
+      simulate_email_from(
+        user,
+        to: "tomorrow@rmnd.io",
+        subject: "Buy milk",
+      )
+
+      email = emails.last
+      expect(email.to).to eq ["user@example.com"]
+      expect(email.subject).to eq t(
+        "mailer.reminder_confirmation.subject",
+        title: "Buy milk",
+      )
+      expect(email.body).to include t(
+        "mailer.reminder_confirmation.what",
+        title: "Buy milk",
+      )
+      expect(email.body).to include t(
+        "mailer.reminder_confirmation.when",
+        due_at: l(
+          Time.current.tomorrow.change(hour: 12),
+          format: :long,
+        ),
+      )
+      expect(emails.count).to eq(1)
+      expect(analytics).to have_tracked("Added reminder").for_user(user)
+      expect(analytics).to have_identified(user)
+
+      visit reminders_path(as: user)
+
+      expect(page).to have_content "Buy milk"
+      expect(page).to have_content l(
+        Time.current.tomorrow.change(hour: 12),
+        format: :long,
+      )
+    end
+  end
+
+  scenario "invalid via email" do
+    user = create(
+      :user,
+      email: "user@example.com",
+    )
+
+    simulate_email_from(
+      user,
+      to: "notadate@rmnd.io",
+      subject: "Buy milk",
+    )
+
+    email = emails.last
+    expect(email.to).to eq ["user@example.com"]
+    expect(email.subject).to eq t(
+      "mailer.reminder_error.subject",
+      title: "Buy milk",
+    )
+    expect(email.body).to include t(
+      "mailer.reminder_error.what",
+      title: "Buy milk",
+    )
+    expect(email.body).to include t(
+      "mailer.reminder_error.when",
+      due_date: "notadate",
+    )
+    expect(email.body).to include t(
+      "errors.format",
+      attribute: field("reminder_form.due_date"),
+      message: t("errors.messages.invalid"),
+    )
+    expect(emails.count).to eq(1)
+    expect(analytics).not_to have_tracked("Added reminder").for_user(user)
+    expect(analytics).not_to have_identified(user)
+
+    visit reminders_path(as: user)
+
+    expect(page).not_to have_content "Buy milk"
+  end
+
+  def simulate_email_from(user, to:, subject:)
+    params = {
+      mandrill_events: [
+        {
+          event: "inbound",
+          msg: {
+            from_email: user.email,
+            to: [[to]],
+            subject: subject,
+          }
+        }
+      ].to_json
+    }
+    Capybara.current_session.driver.post emails_path, params
+  end
 end

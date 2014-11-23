@@ -33,7 +33,7 @@ class ReminderForm
 
   def save(reminder_factory:)
     if valid?
-      reminder_factory.new(reminder_attributes).save!
+      create_reminder(reminder_factory)
       true
     else
       false
@@ -68,6 +68,11 @@ class ReminderForm
     attributes.each do |attribute, value|
       send("#{attribute}=", value)
     end
+  end
+
+  def create_reminder(reminder_factory)
+    self.reminder = reminder_factory.new(reminder_attributes)
+    reminder.save!
   end
 
   def reminder_attributes

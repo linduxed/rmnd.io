@@ -1,0 +1,4 @@
+<%= t ".intro" %>
+
+<%= t ".what", title: @reminder.title %>
+<%= t ".when", due_at: l(@reminder.due_at, format: :long) %>
