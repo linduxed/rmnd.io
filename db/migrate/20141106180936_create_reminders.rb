@@ -1,7 +1,6 @@
 class CreateReminders < ActiveRecord::Migration
   def change
     create_table :reminders do |t|
-      t.timestamp null: false
       t.references :user, null: false, index: true
       t.string :title, null: false
       t.datetime :due_at, null: false
