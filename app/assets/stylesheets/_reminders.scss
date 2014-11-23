@@ -1,14 +1,14 @@
 $reminder-border: 1px solid $separator-color;
 
-.new_reminder {
+.new_reminder_form {
   @include clearfix;
   margin-bottom: 3em;
 
-  .reminder_title {
+  .reminder_form_title {
     @include span-columns(7);
   }
 
-  .reminder_due_at {
+  .reminder_form_due_date {
     @include span-columns(5);
     @include omega();
   }

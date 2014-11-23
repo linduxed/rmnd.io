@@ -1,5 +1,5 @@
 <%= f.input :title %>
-<%= f.input :due_at, as: :string, input_html: { type: :datetime } %>
+<%= f.input :due_date, as: :string, input_html: { type: :datetime } %>
 <%= f.input(
       :repeat_frequency,
       collection: f.object.repeat_frequencies.keys,

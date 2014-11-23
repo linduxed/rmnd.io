@@ -14,7 +14,6 @@ class Reminder < ActiveRecord::Base
   validates :due_at, presence: true
 
   delegate :email, :email_confirmed?, to: :user
-  delegate :repeat_frequencies, to: :class
 
   def self.due
     where("due_at < ? AND (sent_at IS NULL OR sent_at < due_at)", Time.current).
@@ -45,14 +44,6 @@ class Reminder < ActiveRecord::Base
     repeat_frequency.present?
   end
 
-  def due_at=(due_at)
-    if due_at.is_a? String
-      super parsed_time(due_at)
-    else
-      super
-    end
-  end
-
   def cancel!
     update!(cancelled_at: Time.current)
   end
@@ -74,9 +65,5 @@ class Reminder < ActiveRecord::Base
     when "monthly" then 1.month
     when "yearly" then 1.year
     end
-  end
-
-  def parsed_time(string)
-    Nar::Parser.new(string, now: Time.current).time
   end
 end

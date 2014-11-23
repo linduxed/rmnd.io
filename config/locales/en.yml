@@ -40,9 +40,9 @@ en:
         email: Email address
       password_reset:
         password: New password
-      reminder:
+      reminder_form:
         title: What
-        due_at: When
+        due_date: When
         repeat_frequency: Repeat
       session:
         email: Email address
@@ -52,13 +52,13 @@ en:
         password: Password
         time_zone: Time zone
     placeholders:
-      reminder:
+      reminder_form:
         title: Buy more milk
-        due_at: tomorrow at 4 or 12/24
+        due_date: tomorrow at 4 or 12/24
 
   helpers:
     submit:
-      reminder:
+      reminder_form:
         create: Add reminder
         update: Save reminder
       password:

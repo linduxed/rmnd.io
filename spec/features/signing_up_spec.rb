@@ -65,9 +65,9 @@ feature "Signing up" do
       select "Pacific", from: field("user.time_zone")
       click_button button("user.create")
       visit reminders_path
-      fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: "2014-11-15 10:00"
-      click_button button("reminder.create")
+      fill_in field("reminder_form.title"), with: "Buy milk"
+      fill_in field("reminder_form.due_date"), with: "2014-11-15 10:00"
+      click_button button("reminder_form.create")
 
       expect(page).to have_content "November 15, 2014 10:00"
       reminder = Reminder.last

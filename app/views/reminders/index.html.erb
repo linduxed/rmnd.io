@@ -1,5 +1,5 @@
 <h2><%= t(".add") %></h2>
-<%= simple_form_for @reminder do |f| %>
+<%= simple_form_for @reminder_form, url: reminders_path do |f| %>
   <%= render "form_fields", f: f %>
 <% end %>
 

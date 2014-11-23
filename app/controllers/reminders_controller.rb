@@ -3,13 +3,13 @@ class RemindersController < ApplicationController
 
   def index
     @reminders = reminders.uncancelled.ordered
-    @reminder = FutureReminder.new(Reminder.new)
+    @reminder_form = ReminderForm.new
   end
 
   def create
-    @reminder = FutureReminder.new(reminders.new(reminder_params))
+    @reminder_form = ReminderForm.new(reminder_form_params)
 
-    if @reminder.save
+    if @reminder_form.save(reminder_factory: reminders)
       analytics.track_add_reminder
       unless current_user.email_confirmed?
         flash.alert = t("flashes.email_unconfirmed")
@@ -22,13 +22,19 @@ class RemindersController < ApplicationController
   end
 
   def edit
-    @reminder = FutureReminder.new(unsent_reminders.find(params[:id]))
+    @reminder_form = ReminderForm.find(
+      params[:id],
+      reminder_factory: unsent_reminders,
+    )
   end
 
   def update
-    @reminder = FutureReminder.new(unsent_reminders.find(params[:id]))
+    @reminder_form = ReminderForm.find(
+      params[:id],
+      reminder_factory: unsent_reminders,
+    )
 
-    if @reminder.update(reminder_params)
+    if @reminder_form.update(reminder_form_params)
       analytics.track_edit_reminder
       redirect_to reminders_path, notice: t("flashes.reminder_updated")
     else
@@ -40,9 +46,9 @@ class RemindersController < ApplicationController
 
   delegate :reminders, :unsent_reminders, to: :current_user
 
-  def reminder_params
-    params.require(:reminder).permit(
-      :due_at,
+  def reminder_form_params
+    params.require(:reminder_form).permit(
+      :due_date,
       :repeat_frequency,
       :title,
     )

@@ -13,7 +13,6 @@ describe Reminder do
   describe "delegations" do
     it { should delegate_method(:email).to(:user) }
     it { should delegate_method(:email_confirmed?).to(:user) }
-    it { should delegate_method(:repeat_frequencies).to(:class) }
   end
 
   describe "self.due" do
@@ -197,41 +196,6 @@ describe Reminder do
 
         expect(reminder).not_to be_repeating
       end
-    end
-  end
-
-  describe "#due_at=" do
-    it "accepts times" do
-      time = Time.current
-      reminder = described_class.new
-
-      reminder.due_at = time
-
-      expect(reminder.due_at).to eq(time)
-    end
-
-    it "accepts datetimes" do
-      datetime = DateTime.current
-      reminder = described_class.new
-
-      reminder.due_at = datetime
-
-      expect(reminder.due_at).to eq(datetime)
-    end
-
-    it "accepts strings" do
-      reminder = described_class.new
-
-      reminder.due_at = "2014-11-07 21:58"
-
-      expect(reminder.due_at).to eq(Time.zone.local(2014, 11, 7, 21, 58))
-    end
-
-    it "accepts human readable strings" do
-      reminder = described_class.new
-
-      reminder.due_at = "tomorrow"
-      expect(reminder.due_at).to eq(Time.current.tomorrow.change(hour: 12))
     end
   end
 

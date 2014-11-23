@@ -7,9 +7,9 @@ feature "Adding reminders" do
 
       visit reminders_path(as: user)
 
-      fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: 10.minutes.from_now.iso8601
-      click_button button("reminder.create")
+      fill_in field("reminder_form.title"), with: "Buy milk"
+      fill_in field("reminder_form.due_date"), with: 10.minutes.from_now.iso8601
+      click_button button("reminder_form.create")
 
       expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content "Buy milk"
@@ -23,9 +23,9 @@ feature "Adding reminders" do
     travel_to Time.zone.local(2014, 11, 20, 12, 0, 0) do
       visit reminders_path(as: create(:user))
 
-      fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: "tomorrow at 4pm"
-      click_button button("reminder.create")
+      fill_in field("reminder_form.title"), with: "Buy milk"
+      fill_in field("reminder_form.due_date"), with: "tomorrow at 4pm"
+      click_button button("reminder_form.create")
 
       expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content "Buy milk"
@@ -40,10 +40,11 @@ feature "Adding reminders" do
     travel_to Time.current do
       visit reminders_path(as: create(:user))
 
-      fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: 10.minutes.from_now.iso8601
-      select repeat_frequency("daily"), from: field("reminder.repeat_frequency")
-      click_button button("reminder.create")
+      fill_in field("reminder_form.title"), with: "Buy milk"
+      fill_in field("reminder_form.due_date"), with: 10.minutes.from_now.iso8601
+      select repeat_frequency("daily"),
+             from: field("reminder_form.repeat_frequency")
+      click_button button("reminder_form.create")
 
       expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content "Buy milk"
@@ -81,7 +82,7 @@ feature "Adding reminders" do
 
     visit reminders_path(as: user)
 
-    click_button button("reminder.create")
+    click_button button("reminder_form.create")
 
     expect(page).not_to have_content t("flashes.reminder_added")
     expect(page).not_to have_content t("reminders.index.no_reminders")
@@ -98,21 +99,21 @@ feature "Adding reminders" do
   scenario "with an unparseable due date" do
     visit reminders_path(as: create(:user))
 
-    fill_in field("reminder.title"), with: "Buy milk"
-    fill_in field("reminder.due_at"), with: "not a date"
-    click_button button("reminder.create")
+    fill_in field("reminder_form.title"), with: "Buy milk"
+    fill_in field("reminder_form.due_date"), with: "not a date"
+    click_button button("reminder_form.create")
 
     expect(page).not_to have_content t("flashes.reminder_added")
-    expect(find_field(field("reminder.due_at")).value).to be_blank
+    expect(page).to have_content t("errors.messages.invalid")
   end
 
   scenario "with an unconfirmed email" do
     travel_to Time.current do
       visit reminders_path(as: create(:user, :unconfirmed_email))
 
-      fill_in field("reminder.title"), with: "Buy milk"
-      fill_in field("reminder.due_at"), with: 10.minutes.from_now.iso8601
-      click_button button("reminder.create")
+      fill_in field("reminder_form.title"), with: "Buy milk"
+      fill_in field("reminder_form.due_date"), with: 10.minutes.from_now.iso8601
+      click_button button("reminder_form.create")
 
       expect(page).to have_content t("flashes.reminder_added")
       expect(page).to have_content t("flashes.email_unconfirmed")
@@ -122,11 +123,11 @@ feature "Adding reminders" do
   scenario "with a due date in the past" do
     visit reminders_path(as: create(:user))
 
-    fill_in field("reminder.title"), with: "Buy milk"
-    fill_in field("reminder.due_at"), with: 10.minutes.ago
-    click_button button("reminder.create")
+    fill_in field("reminder_form.title"), with: "Buy milk"
+    fill_in field("reminder_form.due_date"), with: 10.minutes.ago.iso8601
+    click_button button("reminder_form.create")
 
     expect(page).not_to have_content t("flashes.reminder_added")
-    expect(find_field(field("reminder.due_at")).value).to be_blank
+    expect(page).to have_content t("errors.messages.past")
   end
 end
