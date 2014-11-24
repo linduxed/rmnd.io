@@ -1,5 +1,3 @@
-require "nar/parser"
-
 class Reminder < ActiveRecord::Base
   enum repeat_frequency: {
     daily: 0,

@@ -1,4 +1,4 @@
-require "nar/parser"
+require "halftime"
 
 class ReminderForm
   include ActiveModel::Validations
@@ -82,7 +82,7 @@ class ReminderForm
   def parse_due_date
     if due_date.present?
       now = Time.current
-      self.due_at = Nar::Parser.new(due_date, now: now).time
+      self.due_at = Halftime::Parser.new(due_date, now: now).time
       if due_at.blank?
         errors.add :due_date, :invalid
       elsif due_at < now
