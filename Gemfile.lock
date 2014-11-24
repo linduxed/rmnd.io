@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/calleerlandsson/halftime.git
+  revision: 5d9dbf52a0bc2a528882f467e41ae062a6cf148c
+  specs:
+    halftime (0.0.1)
+      activesupport
+      parslet
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,9 +105,6 @@ GEM
       activesupport
       capybara
       i18n
-    halftime (0.0.1)
-      activesupport
-      parslet
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.11)
@@ -259,7 +264,7 @@ DEPENDENCIES
   factory_girl_rails
   flutie
   formulaic
-  halftime
+  halftime!
   i18n-tasks
   jquery-rails
   launchy
