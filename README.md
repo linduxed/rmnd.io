@@ -1,6 +1,8 @@
 rmnd.io
 =======
 
+[![Build Status](https://travis-ci.org/calleerlandsson/rmnd.io.svg)](https://travis-ci.org/calleerlandsson/rmnd.io)
+
 Reminders via email.
 
 Getting Started
