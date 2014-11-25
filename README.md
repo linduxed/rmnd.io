@@ -2,6 +2,7 @@ rmnd.io
 =======
 
 [![Build Status](https://travis-ci.org/calleerlandsson/rmnd.io.svg)](https://travis-ci.org/calleerlandsson/rmnd.io)
+[![Code Climate](https://codeclimate.com/github/calleerlandsson/rmnd.io/badges/gpa.svg)](https://codeclimate.com/github/calleerlandsson/rmnd.io)
 
 Reminders via email.
 
