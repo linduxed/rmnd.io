@@ -2,16 +2,16 @@ require "rails_helper"
 
 describe ReminderForm do
   describe "validations" do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:due_date) }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:due_date) }
     it {
-      should validate_inclusion_of(:repeat_frequency).
+      is_expected.to validate_inclusion_of(:repeat_frequency).
         in_array(Reminder.repeat_frequencies.keys).
         allow_blank(true)
     }
-    it { should allow_value(1.second.from_now.iso8601).for(:due_date) }
-    it { should_not allow_value("unparseable").for(:due_date) }
-    it { should_not allow_value(1.second.ago.iso8601).for(:due_date) }
+    it { is_expected.to allow_value(1.second.from_now.iso8601).for(:due_date) }
+    it { is_expected.to_not allow_value("unparseable").for(:due_date) }
+    it { is_expected.to_not allow_value(1.second.ago.iso8601).for(:due_date) }
   end
 
   describe ".find" do

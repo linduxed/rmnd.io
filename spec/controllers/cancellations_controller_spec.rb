@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe CancellationsController do
   it {
-    should deny_guest_access_to(post: :create).with_params(reminder_id: '1')
+    is_expected.to deny_guest_access_to(post: :create).with_params(reminder_id: '1')
   }
 
   describe "#create" do

@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe RemindersController do
-  it { should deny_guest_access_to(get: :index) }
-  it { should deny_guest_access_to(post: :create) }
-  it { should deny_guest_access_to(get: :edit).with_params(id: "1") }
-  it { should deny_guest_access_to(patch: :update).with_params(id: "1") }
+  it { is_expected.to deny_guest_access_to(get: :index) }
+  it { is_expected.to deny_guest_access_to(post: :create) }
+  it { is_expected.to deny_guest_access_to(get: :edit).with_params(id: "1") }
+  it { is_expected.to deny_guest_access_to(patch: :update).with_params(id: "1") }
 
   describe "#create" do
     context "when params are valid" do
