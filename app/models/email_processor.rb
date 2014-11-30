@@ -4,15 +4,8 @@ class EmailProcessor
   end
 
   def process
-    if user.present?
-      Time.use_zone user.time_zone do
-        if reminder_form.save(reminder_factory: user.reminders)
-          Mailer.reminder_confirmation(reminder_form.reminder).deliver
-          analytics.track_add_reminder
-        else
-          Mailer.reminder_error(user, reminder_form).deliver
-        end
-      end
+    in_user_time_zone do
+      reminder_creator.call
     end
   end
 
@@ -22,19 +15,47 @@ class EmailProcessor
 
   delegate :subject, to: :email
 
-  def user
-    @user ||= User.find_by(email: from)
+  def in_user_time_zone(&block)
+    Time.use_zone(user.time_zone, &block)
+  end
+
+  def reminder_creator
+    ReminderCreator.new(
+      reminder_form: reminder_form,
+      user: user,
+      analytics_factory: analytics_factory,
+      mailer: Mailer,
+    )
   end
 
   def reminder_form
-    @reminder_form ||= ReminderForm.new(email_form_params)
+    ReminderForm.new(due_date: token, title: subject)
   end
 
-  def email_form_params
-    {
-      due_date: token,
-      title: subject,
-    }
+  def user
+    @user ||= user_locator.call(email: from)
+  end
+
+  def user_locator
+    UserLocator.new(
+      user_factory: user_factory,
+      not_found_strategy: not_found_strategy,
+    )
+  end
+
+  def not_found_strategy
+    SignUp.new(
+      user_factory: user_factory,
+      analytics_factory: analytics_factory,
+    )
+  end
+
+  def user_factory
+    User
+  end
+
+  def analytics_factory
+    Analytics
   end
 
   def token
@@ -43,9 +64,5 @@ class EmailProcessor
 
   def from
     email.from[:email]
-  end
-
-  def analytics
-    Analytics.new(user)
   end
 end

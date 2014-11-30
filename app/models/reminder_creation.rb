@@ -1,0 +1,2 @@
+class ReminderCreation
+end

@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
   def email_confirmed?
     email_confirmed_at.present?
   end
+
+  private
+
+  def password_optional?
+    true
+  end
 end
