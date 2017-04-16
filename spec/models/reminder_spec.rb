@@ -2,17 +2,17 @@ require "rails_helper"
 
 describe Reminder do
   describe "associations" do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe "validations" do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:due_at) }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:due_at) }
   end
 
   describe "delegations" do
-    it { should delegate_method(:email).to(:user) }
-    it { should delegate_method(:email_confirmed?).to(:user) }
+    it { is_expected.to delegate_method(:email).to(:user) }
+    it { is_expected.to delegate_method(:email_confirmed?).to(:user) }
   end
 
   describe "self.due" do

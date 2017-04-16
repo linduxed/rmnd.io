@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe UsersController do
-  it { should deny_guest_access_to(get: :edit) }
-  it { should deny_guest_access_to(patch: :update) }
+  it { is_expected.to deny_guest_access_to(get: :edit) }
+  it { is_expected.to deny_guest_access_to(patch: :update) }
 
   describe "#edit" do
     it "renders the edit template" do
